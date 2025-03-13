@@ -1,0 +1,546 @@
+
+Comprehensive Operational Guide
+Overview
+The 988 LGBTQ Crisis Support Management System is a sophisticated, comprehensive digital platform designed to support crisis intervention, team management, and operational tracking for the LGBTQ+ crisis support lifeline.
+System Architecture
+Core Sheets and Functional Domains
+The system is organized into several critical sheets, each serving a specific operational purpose:
+Primary Dashboard (🏳️‍🌈 Primary Dashboard)
+
+
+Centralized view of system-wide activities
+Real-time status tracking
+Quick access to critical metrics
+Case Management (📋 Case Management)
+
+
+Comprehensive crisis interaction tracking
+Columns include:
+Case ID
+Timestamp
+Case type 
+Violent intent 
+Abuse 
+General open case 
+Callback for contacts
+Priority Level
+Current Status
+Assigned Counselor
+Brief notes
+Ability to mark closed once case is closed 
+Intervention Log (🆘 Intervention Log)
+
+
+Detailed documentation of crisis intervention calls made
+Psap vs non Psap
+Detailed information on intervention including leader that supported
+Agency contacted 
+Phone number for agency 
+Additional Notes
+Severity and resolution tracking - will a follow up be needed
+4. Floor Alerts Sheets
+Anything that may be concerning that happens on the floor 
+Columns include:
+Counselor tech issues 
+Unresolved 
+Resolved
+Timestamp
+Priority Level
+Current Status
+Member or members impacted 
+Is management support needed
+Ability to mark closed once resolved 
+If a counselor disappears or needs to leave shift 
+Adverse Events & etc
+5. Shift Communications (📝 Shift Thread) found in both the side bar, dashboard, and individual html 
+
+
+Shift Initiation Documentation
+Real-time communication log
+30 min updates within shift thread (message template can be found below)
+Shift handover documentation - template found below 
+Transparent logging of Leadership activity & status
+6.Leadership Tracking Sheet
+Monitor leadership activities and availability
+Track:
+Current status
+Supporting Counselor 
+Coco 
+Tech Support 
+DM support 
+Intervention support 
+Meeting 
+1:1 with direct report
+1:1 with manager 
+Team meeting 
+Break 
+15 minute 
+30 minue
+Other:
+Tech issue
+(Fill in option)
+Start time of current status
+Expected return time
+Current assignment
+Comprehensive tracking of leadership activities
+Supports multiple activity types:
+Floor Support
+Intervention Follow-up
+Administrative Tasks
+Meetings
+Counselor Coaching
+Technical Support
+2. Crisis Categories
+The system recognizes multiple critical crisis categories:
+Suicide Risk
+Self-Harm
+Domestic Violence
+Sexual Assault
+Gender Identity Crisis
+Coming Out Support
+LGBTQIA+ Crisis Related Issues
+Family Rejection
+Mental Health Support
+3. Technical Issue Management
+Systematic tracking of technical challenges
+Categories include:
+System Access
+Audio/Video Issues
+Software Glitches
+Network Connectivity
+Hardware Malfunctions
+4. Error and Feedback Logging
+Comprehensive error tracking
+Feedback collection mechanism
+Supports continuous improvement
+Operational Workflows
+Daily Maintenance
+The system includes an automated daily maintenance process:
+Sheet validation
+Data archiving
+Report generation
+Daily summary email
+Performance Tracking
+Hourly performance metric collection
+Tracking of:
+Leadership activities
+Technical issues
+Feedback items
+Intervention logs
+Unique Features
+Automated Logging
+Automatic timestamp generation
+User email tracking
+Contextual logging across multiple domains
+Security and Compliance
+Error logging with user context
+Systematic data archiving
+Configurable retention periods
+Communication Tools
+Shift thread communication
+Automated daily summaries
+Modal-based data entry
+Technical Details
+Configuration Management
+Centralized configuration object
+Emoji-based sheet and status identifiers
+Flexible and extensible design
+Priority and Status Tracking
+Multi-level priority system
+Granular status tracking
+Visual status indicators
+Color Palette and Emotional Design
+Brand Alignment
+   /* Primary Colors */
+      --trevor-orange: #FF786E;
+      --deep-blue: #001A4E;
+      --purple: #9A3499;
+      --teal: #137F6A;
+      
+      /* Secondary Colors */
+      --light-blue: #4F52DE;
+      --soft-yellow: #FFAD8D;
+      --lavender: #B3AE4A;
+      --light-purple: #C54AC9;
+      
+      /* Tertiary Colors */
+      --soft-green: #BAE2CE;
+      --pale-yellow: #FFF2DF;
+      --light-pink: #FBCBBE;
+      --soft-lavender: #D1CFCC;
+      
+      /* Gradients */
+      --primary-gradient: linear-gradient(135deg, var(--trevor-orange), var(--light-pink));
+      --calm-gradient: linear-gradient(135deg, var(--light-blue), var(--soft-green));
+      --support-gradient: linear-gradient(45deg, var(--purple), var(--light-purple));
+      --background-gradient: linear-gradient(180deg, var(--pale-yellow), #FFFFFF);
+Emotional Color Coding
+🔴 Critical Alerts: Deep red with soft edges
+🟠 High Priority: Warm orange with calming undertones
+🟡 Medium Priority: Soft yellow with supportive feel
+🟢 Low Priority: Gentle green signaling hope
+HTML Interface Ecosystem
+Core HTML Components
+Main Dashboard HTML
+
+
+Real-time case tracking
+Animated priority indicators
+Responsive design
+Emoji-enhanced status displays
+Shift Thread Communication HTML
+
+
+Dynamic message rendering
+Real-time update mechanisms
+Manual and automatic message integration
+Emoji-rich communication interface
+Sidebar Expansion HTML
+
+
+Contextual information display
+Quick action buttons
+Animated status changes
+Emoji-based navigation
+Case Management Modal
+
+
+Detailed case information
+Intervention tracking
+Resource linking
+Emoji-coded crisis types
+Leadership Rotation Handoff HTML
+
+
+Automated and manual handoff processes
+Comprehensive shift summary
+Emoji-enhanced transition tracking
+Technical Support HTML
+
+
+Issue logging
+Resource allocation
+Technical problem tracking
+Training and Resource Hub HTML
+
+
+Contextual learning materials
+Crisis intervention guides
+LGBTQ+ support resources
+Key Dashboard Functionalities:
+Active Crisis Overview
+
+
+Real-time case count tracking
+Severity breakdown visualization
+Immediate attention flagging
+Visual representation of case distribution by crisis type
+Team Status Panel
+
+
+Live tracking of on-shift personnel
+Current role assignments
+Individual team member availability status
+Highlighting of current primary rotation leader
+Key Metrics Card
+
+
+Cases handled during current rotation
+Intervention rate calculation
+Current queue status
+Comparative analysis with typical volume
+Recent Activity Feed
+
+
+Last 5-10 system events
+Color-coded prioritization
+Precise timestamp tracking
+Quick Action Buttons
+
+
+Immediate intervention logging
+Shift thread communication
+Technical issue reporting
+Co-counseling session initiation
+Technical Specification:
+Automatic refresh every 5 minutes
+Manual refresh capability
+Dynamic, real-time data synchronization
+2. Sidebar: Contextual Support Interface
+The sidebar provides immediate access to critical information and quick-action tools, serving as a comprehensive support companion.
+Sidebar Functional Sections:
+Current Primary Information
+
+
+Leader name display
+Current rotation time block
+Remaining rotation time
+On call manager information
+On call consultant information
+Quick handoff button
+Active Cases Widget
+
+
+Scrollable current case list
+Color-coded priority system
+One-click case detail access
+Intervention status indicators
+Quick Tools Section
+
+
+Create New intervention followup 
+Create new callback 
+Update leader team status 
+Crisis intervention protocol links
+Emergency contact directories
+Quick reference guides
+Notification Center
+
+
+New case alerts
+Follow-up reminders
+System notifications
+Handoff request tracking
+Shift Summary
+
+
+Running shift statistics
+Comparative performance metrics
+Notable event tracking
+Team availability amongst shift supervisor and team leads 
+
+Best Practices
+Consistent Logging: Use the provided functions for all system interactions
+Regular Maintenance: Leverage daily maintenance triggers
+Comprehensive Documentation: Log all significant activities
+Privacy Awareness: Handle all data with utmost confidentiality
+Recommendations for Leadership
+Regularly review dashboard and performance metrics
+Encourage comprehensive logging
+Use system insights for continuous improvement
+Maintain open communication through shift threads
+Getting Started
+Familiarize yourself with the system architecture
+Practice using modal-based data entry
+Review daily summary reports
+Participate in regular system maintenance
+Shift Thread Message Guidelines
+Message Formatting and Best Practices
+Shift thread messages are crucial for maintaining transparent, supportive communication across team shifts. Here are guidelines for effective shift thread messaging:
+1. Structured Message Components
+Each message should follow a consistent structure:
+Emoji indicator of message type
+Clear, concise description
+Relevant context
+Action items (if applicable)
+Example Message Templates
+
+
+Shift Start
+🌅 Shift Initiated
+👤 Shift Leader: [Name]
+⏰ Start Time: [Date/Time]
+📋 Team Strength: [Number of Counselors]
+🚨 Current Alert Levels: 
+   - System Status: Operational
+   - Emotional Support Capacity: High
+   - Crisis Intervention Readiness: Fully Staffed
+📝 Key Focus Areas:
+   - Maintain compassionate, trauma-informed support
+   - Prioritize caller safety and well-being
+   - Ensure comprehensive documentation
+🏳️‍🌈 Shift Intention: Creating a safe, affirming space for LGBTQ+ individuals
+Shift Start Protocol
+When beginning a shift, the shift leader should:
+Log the shift start message in the Shift Thread
+Conduct a brief team check-in
+Review any open cases or pending interventions
+Assess current team emotional and operational readiness
+Ensure all systems and resources are fully operational
+Resolving SpreadsheetApp.getUI Challenges
+Common UI-Related Challenges in Google Apps Script
+Google Apps Script can be particularly sensitive when working with UI components. Here are strategies to mitigate common issues:
+1. Defensive UI Initialization
+function safeGetUI() {
+  try {
+    // Primary method
+    return SpreadsheetApp.getUi();
+  } catch (primaryError) {
+    try {
+      // Fallback method
+      return HtmlService.createHtmlOutput()
+        .setWidth(300)
+        .setHeight(100)
+        .setTitle('System Notification');
+    } catch (fallbackError) {
+      // Absolute last resort - logging
+      console.error('UI Access Failed', {
+        primaryError: primaryError.toString(),
+        fallbackError: fallbackError.toString()
+      });
+      
+      // Log error through alternative method
+      logError(primaryError, 'UI_ACCESS_FAILURE');
+      
+      return null;
+    }
+  }
+}
+
+// Usage in functions
+function showAlert(message) {
+  const ui = safeGetUI();
+  
+  if (ui) {
+    try {
+      ui.alert('System Notification', message, ui.ButtonSet.OK);
+    } catch (alertError) {
+      // Fallback logging
+      console.error('Alert Display Failed', alertError);
+      logError(alertError, 'ALERT_DISPLAY_FAILURE');
+    }
+  }
+}
+2. Error Handling Strategies
+Always use try-catch blocks
+Provide multiple fallback mechanisms
+Log errors comprehensively
+Create graceful degradation paths
+3. Best Practices
+Avoid direct UI calls in time-triggered functions
+Use HTML service for complex interactions
+Implement comprehensive error logging
+Create safe wrapper functions
+Recommended Approach for Modal and UI Interactions
+function showSafeModal(htmlFile, title, width = 600, height = 500) {
+  try {
+    const html = HtmlService.createHtmlOutputFromFile(htmlFile)
+      .setWidth(width)
+      .setHeight(height)
+      .setTitle(title);
+    
+    const ui = safeGetUI();
+    if (ui) {
+      ui.showModalDialog(html, title);
+    } else {
+      // Fallback logging or alternative display method
+      console.error(`Modal Display Failed: ${title}`);
+      logError(new Error('Modal Display Failure'), 'MODAL_DISPLAY');
+    }
+  } catch (error) {
+    console.error('Modal Creation Error', error);
+    logError(error, 'MODAL_CREATION');
+  }
+}
+Support and Training
+For additional support or training, contact your system administrator or lead technical support personnel.
+
+Note: This system is designed with compassion, professionalism, and the specific needs of LGBTQ+ crisis support in mind. Every interaction matters.
+Shift Thread Message Guidelines
+Message Formatting and Best Practices
+Shift thread messages are crucial for maintaining transparent, supportive communication across team shifts. Here are guidelines for effective shift thread messaging:
+1. Structured Message Components
+Each message should follow a consistent structure:
+Emoji indicator of message type
+Clear, concise description
+Relevant context
+Action items (if applicable)
+Example Message Templates
+Shift Handoff Message
+🔄 Shift Handover:
+👋 Handover to: [Next Shift Leader Name]
+🔍 Current Case Overview
+• Total Open Cases: [Number]
+• Abuse Cases: [Number] 
+• Violent Intent Cases: [Number] 
+• Intervention Follow-ups: [Number]
+📞 Scheduled Callbacks
+* Next Callback: [Date/Time]
+📋 Notes from Primary Role:
+- [Key ongoing situations]
+- [Critical follow-up items]
+- [Any special considerations]
+30-Minute Status Update
+🔄 **Status Update - [Current Time]**
+• Open Cases: [Updated number]
+• Abuse Cases: [#] 🚨
+• Violent Intent Cases: [#] ⚠️
+• New Situations: [Brief overview]
+• Team Status: [Any changes in availability]
+Leadership Activity Log
+🤝 Leadership Activity
+👤 Leader: [Name]
+🎯 Activity: Floor Support
+📝 Details: Provided direct support during current shift
+Tech Issue Report
+🖥️ Tech Issue Reported
+🔧 Category: System Access
+📝 Description: Intermittent login problems
+⚠️ Impact: High
+Crisis Intervention Summary
+🆘 Crisis Intervention
+🏳️‍🌈 Crisis Type: Family Rejection
+🚨 Severity: High
+📋 Outcome: Safety plan developed
+🤝 Followup Needed: Yes
+Shift Closure
+🏁 Shift Closed
+👤 Shift Leader: [Name]
+⏰ Duration: 
+📋 Cases Open: 
+- General:
+- Violent Intent: 
+- Abuse
+🆘 Intervention Follow ups:
+📊 Next Callback: 
+Shift Start Protocol
+When beginning a shift, the shift leader should:
+Log the shift start message in the Shift Thread
+Review any open cases or pending interventions
+Assess current intervention needs
+Ensure all systems and resources are fully operational
+Team Tracking
+Counselor availability and current status should be tracked in a separate sidebar or tracking sheet
+30-minute status updates provide a quick overview of current situation
+Focus on case management and critical support needs
+Critical Considerations
+Maintain confidentiality at all times
+Use clear, empathetic language
+Prioritize caller safety and well-being
+Ensure comprehensive and accurate documentation
+Support and Training
+For additional support or training, contact your system administrator or lead technical support personnel.
+
+Note: This system is designed with compassion, professionalism, and the specific needs of LGBTQ+ crisis support in mind. Every interaction matters.# 988 LGBTQ Crisis Support Management System
+
+Queue Rotations: All Leaders
+Primary
+Setting up your Primary rotation
+Check for scheduled callbacks during your shift rotation.
+Review for any nuances and/or time zone discrepancies to be corrected
+Schedule messages for volunteers for callbacks
+Review Shift Messaging Cadence below to determine which Start of Shift, Mid Shift Check-In, and End of Shift Messages should be scheduled and sent during the designated Primary rotation
+Start and update a Shift thread, utilizing the standard template, to document all relevant details for this rotation.
+Pin it to the channel for subsequent shifts to review. Remove pins more than 24 hours old.
+Confirm attendance in the 988 Lifeline Schedule file
+Make sure all Counselors are in Ready 10 minutes after their shift starts; if not, check in and provide support, or update the attendance tracker accordingly
+Please makes sure you or another leader is able to support a Counselor experiencing technical issues
+Managing Your Primary rotation
+Check the Follow-Up Reports for review (and later call-in, if applicable/able)
+Ensure all necessary interventions and reports are reviewed and called in as soon as possible, including delegating to fellow supervisors when appropriate
+Remain aware of slack channels for requests to support a Counselor with a coco or debrief and ensure all requests are promptly addressed
+Primaries may support a coco, only after all on queue and admin leaders are on cocos or away on a break. Folks in Admin should be called into the queue as needed to ensure all safety concerns do not go unsupported.
+Remain aware of the #988-sup-group channel to coordinate any IOC’s or other support for our Digital colleagues
+Ensure a shift leader opens and supervises the watercooler for Counselors who are ending their shift.
+Closing your Primary rotation
+Capture any outstanding tasks or issues into the #988-lifeline-supervision Slack channel in your shift thread for the next supervision crew, including any incomplete reports requiring review or call-in.
+Notify of any abuse reports requiring managerial review in the #988-ll-supstls Slack channel, so that Managers can review cases requiring additional considerations.
+Primary- eye in the sky, should be communicating what they’re working on and if they’re delegating any duties. It’s not just scheduling messages, it’s overseeing the entire 3-4 hour segment, keeping an eye out for who’s doing what, and ensuring things flow smoothly for CW’s and fellow leaders.
+Primary should designate a backup primary to take over watch when leaving for break/lunch
+looking out for things like overstacked callback times and gameplanning
+Identifying admin rotations, any shadows or buddy connections during time that may impact coverage
+Primary should and can delegate within reason
+On queue leaders should check w/ primary before taking over any non queue specific tasks to ensure workflows are not disrupted.
+Communication is key.
+
+
