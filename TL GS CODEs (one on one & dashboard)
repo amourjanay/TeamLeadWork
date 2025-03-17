@@ -1,0 +1,4674 @@
+I want ALL dashboards to have  similar style and interactive flow to the one one one dashboard and my one one one notes to have the template after the dashboard html but with a similar vibe to the html dashboard making sure that the counselors pulled can be either manually input or pulled fro the counselors added to team. I would also like to be asked if I want to send a email 
+
+​​<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <base target="_top">
+ <title>One-on-One Dashboard</title>
+  <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+   :root {
+     /* Primary colors */
+     --primary: #6366f1;
+     --primary-dark: #4f46e5;
+     --primary-light: #c7d2fe;
+     --primary-bg: #eef2ff;
+    
+     /* Secondary colors */
+     --secondary: #f43f5e;
+     --secondary-dark: #e11d48;
+     --secondary-light: #fecdd3;
+     --secondary-bg: #fff1f2;
+    
+     /* Success colors */
+     --success: #10b981;
+     --success-dark: #059669;
+     --success-light: #a7f3d0;
+     --success-bg: #ecfdf5;
+    
+     /* Warning colors */
+     --warning: #f59e0b;
+     --warning-dark: #d97706;
+     --warning-light: #fde68a;
+     --warning-bg: #fffbeb;
+    
+     /* Danger colors */
+     --danger: #ef4444;
+     --danger-dark: #dc2626;
+     --danger-light: #fca5a5;
+     --danger-bg: #fee2e2;
+    
+     /* Neutral colors */
+     --gray-50: #f9fafb;
+     --gray-100: #f3f4f6;
+     --gray-200: #e5e7eb;
+     --gray-300: #d1d5db;
+     --gray-400: #9ca3af;
+     --gray-500: #6b7280;
+     --gray-600: #4b5563;
+     --gray-700: #374151;
+     --gray-800: #1f2937;
+     --gray-900: #111827;
+    
+     /* Shadow values */
+     --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05);
+     --shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px 0 rgba(0,0,0,0.06);
+     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+     --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+     --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    
+     /* Border radius */
+     --radius-sm: 0.125rem;
+     --radius: 0.25rem;
+     --radius-md: 0.375rem;
+     --radius-lg: 0.5rem;
+     --radius-xl: 0.75rem;
+     --radius-2xl: 1rem;
+     --radius-3xl: 1.5rem;
+     --radius-full: 9999px;
+   }
+  
+   * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+   }
+  
+   html, body {
+     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+     font-size: 16px;
+     line-height: 1.5;
+     color: var(--gray-800);
+     background-color: var(--gray-50);
+     height: 100%;
+     width: 100%;
+     overflow: hidden;
+   }
+  
+   .dashboard {
+     display: flex;
+     height: 100vh;
+   }
+  
+   /* Sidebar */
+   .sidebar {
+     width: 280px;
+     background-color: var(--gray-800);
+     color: white;
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     position: relative;
+     transition: width 0.3s ease;
+     flex-shrink: 0;
+     overflow-y: auto;
+     overflow-x: hidden;
+   }
+  
+   .sidebar-header {
+     padding: 1.5rem 1rem;
+     border-bottom: 1px solid var(--gray-700);
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+   }
+  
+   .sidebar-title {
+     font-size: 1.25rem;
+     font-weight: 600;
+     color: white;
+   }
+  
+   .sidebar-logo {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 40px;
+     height: 40px;
+     background-color: var(--primary);
+     border-radius: var(--radius-full);
+   }
+  
+   .sidebar-nav {
+     padding: 1rem 0;
+     flex: 1;
+   }
+  
+   .nav-section {
+     margin-bottom: 1rem;
+   }
+  
+   .nav-section-title {
+     padding: 0.5rem 1.5rem;
+     font-size: 0.75rem;
+     font-weight: 600;
+     text-transform: uppercase;
+     letter-spacing: 0.05em;
+     color: var(--gray-400);
+   }
+  
+   .nav-item {
+     display: flex;
+     align-items: center;
+     padding: 0.75rem 1.5rem;
+     color: var(--gray-300);
+     text-decoration: none;
+     cursor: pointer;
+     transition: all 0.2s ease;
+   }
+  
+   .nav-item:hover {
+     color: white;
+     background-color: var(--gray-700);
+   }
+  
+   .nav-item.active {
+     color: white;
+     background-color: var(--primary-dark);
+   }
+  
+   .nav-icon {
+     margin-right: 0.75rem;
+     width: 18px;
+     text-align: center;
+   }
+  
+   .sidebar-footer {
+     padding: 1rem 1.5rem;
+     border-top: 1px solid var(--gray-700);
+     display: flex;
+     align-items: center;
+   }
+  
+   .user-info {
+     display: flex;
+     align-items: center;
+     gap: 0.75rem;
+     flex: 1;
+   }
+  
+   .user-avatar {
+     width: 32px;
+     height: 32px;
+     background-color: var(--primary-light);
+     color: var(--primary-dark);
+     border-radius: var(--radius-full);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-weight: 600;
+     font-size: 0.875rem;
+   }
+  
+   .user-details {
+     overflow: hidden;
+   }
+  
+   .user-name {
+     font-weight: 500;
+     font-size: 0.875rem;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+   }
+  
+   .user-role {
+     color: var(--gray-400);
+     font-size: 0.75rem;
+   }
+  
+   /* Main content */
+   .main-content {
+     flex: 1;
+     display: flex;
+     flex-direction: column;
+     overflow-y: auto;
+   }
+  
+   .main-header {
+     background-color: white;
+     box-shadow: var(--shadow-sm);
+     padding: 1rem 1.5rem;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     position: sticky;
+     top: 0;
+     z-index: 10;
+   }
+  
+   .header-title {
+     font-size: 1.25rem;
+     font-weight: 600;
+     color: var(--gray-900);
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+   }
+  
+   .header-title .emoji {
+     font-size: 1.5rem;
+   }
+  
+   .header-actions {
+     display: flex;
+     align-items: center;
+     gap: 0.75rem;
+   }
+  
+   /* Container */
+   .container {
+     padding: 1.5rem;
+     flex: 1;
+     max-width: 100%;
+   }
+  
+   /* Cards */
+   .cards-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+     gap: 1.5rem;
+     margin-bottom: 2rem;
+   }
+  
+   .card {
+     background-color: white;
+     border-radius: var(--radius-lg);
+     box-shadow: var(--shadow);
+     padding: 1.5rem;
+     display: flex;
+     flex-direction: column;
+     position: relative;
+     overflow: hidden;
+   }
+  
+   .card.card-primary {
+     border-top: 3px solid var(--primary);
+   }
+  
+   .card.card-success {
+     border-top: 3px solid var(--success);
+   }
+  
+   .card.card-warning {
+     border-top: 3px solid var(--warning);
+   }
+  
+   .card.card-danger {
+     border-top: 3px solid var(--danger);
+   }
+  
+   .card-icon {
+     position: absolute;
+     top: 1.5rem;
+     right: 1.5rem;
+     font-size: 1.5rem;
+     opacity: 0.15;
+   }
+  
+   .card-title {
+     font-size: 0.875rem;
+     font-weight: 600;
+     color: var(--gray-500);
+     margin-bottom: 0.75rem;
+     text-transform: uppercase;
+     letter-spacing: 0.05em;
+   }
+  
+   .card-value {
+     font-size: 2rem;
+     font-weight: 700;
+     color: var(--gray-900);
+     margin-bottom: 0.5rem;
+   }
+  
+   .card-subtitle {
+     font-size: 0.875rem;
+     color: var(--gray-500);
+     margin-bottom: 1rem;
+   }
+  
+   .card-progress {
+     margin-top: auto;
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+   }
+  
+   .progress-bar {
+     flex: 1;
+     height: 4px;
+     background-color: var(--gray-100);
+     border-radius: var(--radius-full);
+     overflow: hidden;
+   }
+  
+   .progress-value {
+     height: 100%;
+     transition: width 0.3s ease;
+   }
+  
+   .progress-text {
+     font-size: 0.75rem;
+     font-weight: 600;
+   }
+  
+   .progress-text.positive {
+     color: var(--success);
+   }
+  
+   .progress-text.negative {
+     color: var(--danger);
+   }
+  
+   /* Section */
+   .section {
+     margin-bottom: 1.5rem;
+   }
+  
+   .section-header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin-bottom: 1rem;
+   }
+  
+   .section-title {
+     font-size: 1.125rem;
+     font-weight: 600;
+     color: var(--gray-900);
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+   }
+  
+   .section-subtitle {
+     color: var(--gray-500);
+     font-size: 0.875rem;
+     margin-top: 0.25rem;
+   }
+  
+   .section-actions {
+     display: flex;
+     align-items: center;
+     gap: 0.75rem;
+   }
+  
+   /* Filter bar */
+   .filter-bar {
+     background-color: white;
+     border-radius: var(--radius-lg);
+     box-shadow: var(--shadow);
+     padding: 1rem;
+     margin-bottom: 1.5rem;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 1rem;
+   }
+  
+   .filter-group {
+     display: flex;
+     flex-direction: column;
+     min-width: 200px;
+     flex: 1;
+   }
+  
+   .filter-label {
+     font-size: 0.75rem;
+     font-weight: 500;
+     color: var(--gray-500);
+     margin-bottom: 0.375rem;
+   }
+  
+   .filter-input {
+     padding: 0.5rem 0.75rem;
+     border: 1px solid var(--gray-300);
+     border-radius: var(--radius);
+     font-family: inherit;
+     font-size: 0.875rem;
+   }
+  
+   .filter-input:focus {
+     outline: none;
+     border-color: var(--primary);
+     box-shadow: 0 0 0 2px var(--primary-light);
+   }
+  
+   .filter-actions {
+     display: flex;
+     align-items: flex-end;
+     gap: 0.75rem;
+   }
+  
+   /* Table */
+   .table-container {
+     background-color: white;
+     border-radius: var(--radius-lg);
+     box-shadow: var(--shadow);
+     overflow: hidden;
+   }
+  
+   .table {
+     width: 100%;
+     border-collapse: collapse;
+   }
+  
+   .table th,
+   .table td {
+     padding: 1rem;
+     text-align: left;
+   }
+  
+   .table th {
+     background-color: var(--gray-50);
+     font-size: 0.75rem;
+     font-weight: 600;
+     text-transform: uppercase;
+     letter-spacing: 0.05em;
+     color: var(--gray-600);
+   }
+  
+   .table tbody tr {
+     border-top: 1px solid var(--gray-200);
+   }
+  
+   .table tbody tr:hover {
+     background-color: var(--gray-50);
+   }
+  
+   .table td {
+     font-size: 0.875rem;
+     color: var(--gray-700);
+   }
+  
+   /* Session cards */
+   .session-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+     gap: 1.25rem;
+   }
+  
+   .session-card {
+     background-color: white;
+     border-radius: var(--radius-lg);
+     box-shadow: var(--shadow);
+     overflow: hidden;
+     transition: all 0.2s ease;
+     display: flex;
+     flex-direction: column;
+   }
+  
+   .session-card:hover {
+     transform: translateY(-4px);
+     box-shadow: var(--shadow-md);
+   }
+  
+   .session-header {
+     padding: 1.25rem;
+     border-bottom: 1px solid var(--gray-100);
+     display: flex;
+     align-items: flex-start;
+   }
+  
+   .session-avatar {
+     width: 40px;
+     height: 40px;
+     border-radius: var(--radius-full);
+     background-color: var(--primary-bg);
+     color: var(--primary);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-weight: 600;
+     font-size: 1.125rem;
+     margin-right: 1rem;
+     flex-shrink: 0;
+   }
+  
+   .session-title {
+     flex: 1;
+   }
+  
+   .session-name {
+     font-size: 1rem;
+     font-weight: 600;
+     color: var(--gray-900);
+     margin-bottom: 0.25rem;
+   }
+  
+   .session-meta {
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+     font-size: 0.75rem;
+     color: var(--gray-500);
+   }
+  
+   .session-meta-item {
+     display: flex;
+     align-items: center;
+     gap: 0.25rem;
+   }
+  
+   .session-meta-divider {
+     width: 3px;
+     height: 3px;
+     background-color: var(--gray-400);
+     border-radius: var(--radius-full);
+   }
+  
+   .session-badge {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-left: auto;
+     padding: 0.25rem 0.75rem;
+     border-radius: var(--radius-full);
+     font-size: 0.75rem;
+     font-weight: 500;
+     white-space: nowrap;
+   }
+  
+   .session-badge.recent {
+     background-color: var(--primary-bg);
+     color: var(--primary-dark);
+   }
+  
+   .session-badge.upcoming {
+     background-color: var(--success-bg);
+     color: var(--success-dark);
+   }
+  
+   .session-badge.overdue {
+     background-color: var(--danger-bg);
+     color: var(--danger-dark);
+   }
+  
+   .session-content {
+     padding: 1.25rem;
+     flex: 1;
+   }
+  
+   .session-summary {
+     font-size: 0.875rem;
+     color: var(--gray-700);
+     margin-bottom: 1rem;
+     display: -webkit-box;
+     -webkit-line-clamp: 3;
+     -webkit-box-orient: vertical;
+     overflow: hidden;
+   }
+  
+   .session-section {
+     margin-top: 1rem;
+   }
+  
+   .session-section-title {
+     font-size: 0.75rem;
+     font-weight: 600;
+     color: var(--gray-600);
+     margin-bottom: 0.5rem;
+     display: flex;
+     align-items: center;
+     gap: 0.375rem;
+   }
+  
+   .session-section-content {
+     font-size: 0.875rem;
+     color: var(--gray-700);
+   }
+  
+   .action-items {
+     display: flex;
+     flex-direction: column;
+     gap: 0.5rem;
+   }
+  
+   .action-item {
+     display: flex;
+     align-items: center;
+     gap: 0.5rem;
+     padding: 0.5rem;
+     border-radius: var(--radius);
+     background-color: var(--gray-50);
+     transition: all 0.2s ease;
+   }
+  
+   .action-item:hover {
+     background-color: var(--gray-100);
+   }
+  
+   .action-checkbox {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     width: 18px;
+     height: 18px;
+     border: 2px solid var(--gray-300);
+     border-radius: var(--radius-sm);
+     cursor: pointer;
+   }
+  
+   .action-checkbox.checked {
+     background-color: var(--success);
+     border-color: var(--success);
+     color: white;
+   }
+  
+   .action-text {
+     flex: 1;
+     font-size: 0.813rem;
+   }
+  
+   .action-text.completed {
+     color: var(--gray-400);
+     text-decoration: line-through;
+   }
+  
+   .session-footer {
+     padding: 0.75rem 1.25rem;
+     border-top: 1px solid var(--gray-100);
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     font-size: 0.75rem;
+     color: var(--gray-500);
+   }
+  
+   .session-next {
+     display: flex;
+     align-items: center;
+     gap: 0.375rem;
+   }
+  
+   .session-next-date.overdue {
+     color: var(--danger);
+     font-weight: 500;
+   }
+  
+   .session-next-date.upcoming {
+     color: var(--success);
+     font-weight: 500;
+   }
+  
+   .session-actions {
+     display: flex;
+     gap: 1rem;
+   }
+  
+   .session-action {
+     color: var(--gray-500);
+     cursor: pointer;
+     transition: color 0.2s ease;
+   }
+  
+   .session-action:hover {
+     color: var(--primary);
+   }
+  
+   /* Empty state */
+   .empty-state {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     padding: 3rem 2rem;
+     background-color: white;
+     border-radius: var(--radius-lg);
+     box-shadow: var(--shadow);
+   }
+  
+   .empty-state-icon {
+     width: 80px;
+     height: 80px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background-color: var(--primary-bg);
+     color: var(--primary);
+     border-radius: var(--radius-full);
+     font-size: 2rem;
+     margin-bottom: 1.5rem;
+   }
+  
+   .empty-state-title {
+     font-size: 1.25rem;
+     font-weight: 600;
+     color: var(--gray-900);
+     margin-bottom: 0.5rem;
+   }
+  
+   .empty-state-message {
+     color: var(--gray-500);
+     max-width: 32rem;
+     margin: 0 auto 1.5rem;
+   }
+  
+   /* Buttons */
+   .btn {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     padding: 0.5rem 1rem;
+     font-size: 0.875rem;
+     font-weight: 500;
+     border-radius: var(--radius);
+     transition: all 0.2s ease;
+     cursor: pointer;
+     gap: 0.5rem;
+     text-decoration: none;
+     border: 1px solid transparent;
+   }
+  
+   .btn-icon {
+     padding: 0.5rem;
+     width: 2.25rem;
+     height: 2.25rem;
+   }
+  
+   .btn-xs {
+     padding: 0.25rem 0.5rem;
+     font-size: 0.75rem;
+   }
+  
+       .btn-sm {
+     padding: 0.375rem 0.75rem;
+     font-size: 0.813rem;
+   }
+  
+   .btn-lg {
+     padding: 0.625rem 1.25rem;
+     font-size: 1rem;
+   }
+  
+   .btn-primary {
+     background-color: var(--primary);
+     color: white;
+   }
+  
+   .btn-primary:hover {
+     background-color: var(--primary-dark);
+   }
+  
+   .btn-secondary {
+     background-color: var(--gray-100);
+     color: var(--gray-700);
+   }
+  
+   .btn-secondary:hover {
+     background-color: var(--gray-200);
+   }
+  
+   .btn-outline {
+     border-color: var(--gray-300);
+     background-color: transparent;
+     color: var(--gray-700);
+   }
+  
+   .btn-outline:hover {
+     background-color: var(--gray-100);
+   }
+  
+   .btn-success {
+     background-color: var(--success);
+     color: white;
+   }
+  
+   .btn-success:hover {
+     background-color: var(--success-dark);
+   }
+  
+   .btn-danger {
+     background-color: var(--danger);
+     color: white;
+   }
+  
+   .btn-danger:hover {
+     background-color: var(--danger-dark);
+   }
+  
+   /* Badges */
+   .badge {
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
+     padding: 0.25rem 0.625rem;
+     font-size: 0.75rem;
+     font-weight: 500;
+     border-radius: var(--radius-full);
+   }
+  
+   .badge-primary {
+     background-color: var(--primary-bg);
+     color: var(--primary-dark);
+   }
+  
+   .badge-success {
+     background-color: var(--success-bg);
+     color: var(--success-dark);
+   }
+  
+   .badge-warning {
+     background-color: var(--warning-bg);
+     color: var(--warning-dark);
+   }
+  
+   .badge-danger {
+     background-color: var(--danger-bg);
+     color: var(--danger-dark);
+   }
+  
+   /* Charts */
+   .chart-container {
+     background-color: white;
+     border-radius: var(--radius-lg);
+     box-shadow: var(--shadow);
+     padding: 1.5rem;
+     margin-bottom: 1.5rem;
+   }
+  
+   .chart-header {
+     margin-bottom: 1rem;
+   }
+  
+   .chart-title {
+     font-size: 1rem;
+     font-weight: 600;
+     color: var(--gray-900);
+   }
+  
+   .chart-canvas {
+     width: 100%;
+     height: 300px;
+   }
+  
+   /* Loader */
+   .loader {
+     display: inline-block;
+     width: 40px;
+     height: 40px;
+     border: 3px solid var(--gray-200);
+     border-radius: 50%;
+     border-top-color: var(--primary);
+     animation: spin 1s ease-in-out infinite;
+   }
+  
+   @keyframes spin {
+     to { transform: rotate(360deg); }
+   }
+  
+   .loading-container {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     min-height: 400px;
+   }
+  
+   .loading-text {
+     margin-top: 1rem;
+     color: var(--gray-500);
+   }
+  
+   /* Utilities */
+   .hidden {
+     display: none !important;
+   }
+  
+   .mt-auto {
+     margin-top: auto;
+   }
+  
+   .mb-1 {
+     margin-bottom: 0.25rem;
+   }
+  
+   .mb-2 {
+     margin-bottom: 0.5rem;
+   }
+  
+   .mb-3 {
+     margin-bottom: 0.75rem;
+   }
+  
+   .mb-4 {
+     margin-bottom: 1rem;
+   }
+  
+   .mb-5 {
+     margin-bottom: 1.25rem;
+   }
+  
+   .mb-6 {
+     margin-bottom: 1.5rem;
+   }
+  
+   .mb-8 {
+     margin-bottom: 2rem;
+   }
+  
+   .flex {
+     display: flex;
+   }
+  
+   .flex-col {
+     flex-direction: column;
+   }
+  
+   .items-center {
+     align-items: center;
+   }
+  
+   .justify-between {
+     justify-content: space-between;
+   }
+  
+   .gap-2 {
+     gap: 0.5rem;
+   }
+  
+   .gap-3 {
+     gap: 0.75rem;
+   }
+  
+   .gap-4 {
+     gap: 1rem;
+   }
+  
+   .text-sm {
+     font-size: 0.875rem;
+   }
+  
+   .text-xs {
+     font-size: 0.75rem;
+   }
+  
+   .font-bold {
+     font-weight: 700;
+   }
+  
+   .font-semibold {
+     font-weight: 600;
+   }
+  
+   .font-medium {
+     font-weight: 500;
+   }
+  
+   .text-gray {
+     color: var(--gray-500);
+   }
+ </style>
+</head>
+
+
+<body>
+ <div class="dashboard">
+   <!-- Sidebar -->
+   <aside class="sidebar">
+     <div class="sidebar-header">
+       <div class="sidebar-logo">
+         <i class="fas fa-clipboard-list"></i>
+       </div>
+       <div class="sidebar-title">Team Lead Dashboard</div>
+     </div>
+    
+     <nav class="sidebar-nav">
+       <div class="nav-section">
+         <div class="nav-section-title">Dashboard</div>
+         <a href="#" class="nav-item" onclick="navigateTo('dashboard')">
+           <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
+           Main Dashboard
+         </a>
+       </div>
+      
+       <div class="nav-section">
+         <div class="nav-section-title">Team Management</div>
+         <a href="#" class="nav-item" onclick="navigateTo('team-view')">
+           <span class="nav-icon"><i class="fas fa-users"></i></span>
+           Team Overview
+         </a>
+         <a href="#" class="nav-item active" onclick="navigateTo('one-on-one')">
+           <span class="nav-icon"><i class="fas fa-clipboard-list"></i></span>
+           One-on-One Notes
+         </a>
+         <a href="#" class="nav-item" onclick="navigateTo('metrics')">
+           <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
+           Performance Metrics
+         </a>
+       </div>
+      
+       <div class="nav-section">
+         <div class="nav-section-title">Time & Schedule</div>
+         <a href="#" class="nav-item" onclick="navigateTo('schedule')">
+           <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>
+           Schedule Management
+         </a>
+         <a href="#" class="nav-item" onclick="navigateTo('time-tracking')">
+           <span class="nav-icon"><i class="fas fa-clock"></i></span>
+           Time Tracking
+         </a>
+       </div>
+      
+       <div class="nav-section">
+         <div class="nav-section-title">Quality Assurance</div>
+         <a href="#" class="nav-item" onclick="navigateTo('qa-reviews')">
+           <span class="nav-icon"><i class="fas fa-search"></i></span>
+           QA Reviews
+         </a>
+         <a href="#" class="nav-item" onclick="navigateTo('qa-reports')">
+           <span class="nav-icon"><i class="fas fa-file-alt"></i></span>
+           QA Reports
+         </a>
+       </div>
+      
+       <div class="nav-section">
+         <div class="nav-section-title">Other</div>
+         <a href="#" class="nav-item" onclick="navigateTo('tasks')">
+           <span class="nav-icon"><i class="fas fa-tasks"></i></span>
+           Task Management
+         </a>
+         <a href="#" class="nav-item" onclick="navigateTo('general-notes')">
+           <span class="nav-icon"><i class="fas fa-sticky-note"></i></span>
+           General Notes
+         </a>
+         <a href="#" class="nav-item" onclick="navigateTo('settings')">
+           <span class="nav-icon"><i class="fas fa-cog"></i></span>
+           Settings
+         </a>
+       </div>
+     </nav>
+    
+     <div class="sidebar-footer">
+       <div class="user-info">
+         <div class="user-avatar">AJ</div>
+         <div class="user-details">
+           <div class="user-name">Amour Janay</div>
+           <div class="user-role">Team Lead</div>
+         </div>
+       </div>
+     </div>
+   </aside>
+  
+   <!-- Main content -->
+   <div class="main-content">
+     <header class="main-header">
+       <h1 class="header-title">
+         <span class="emoji">📋</span> One-on-One Dashboard
+       </h1>
+      
+       <div class="header-actions">
+         <button class="btn btn-outline btn-sm" onclick="exportData()">
+           <i class="fas fa-download"></i> Export
+         </button>
+         <button class="btn btn-primary btn-sm" onclick="showNewSession()">
+           <i class="fas fa-plus"></i> New Session
+         </button>
+       </div>
+     </header>
+    
+     <div class="container">
+       <!-- Stats cards -->
+       <div class="cards-grid">
+         <div class="card card-primary">
+           <i class="fas fa-clipboard-list card-icon"></i>
+           <h3 class="card-title">Total Sessions</h3>
+           <div class="card-value" id="total-sessions">--</div>
+           <div class="card-subtitle">
+             <span id="sessions-this-month">--</span> sessions this month
+           </div>
+           <div class="card-progress">
+             <div class="progress-bar">
+               <div class="progress-value" style="width: 65%; background-color: var(--primary);"></div>
+             </div>
+             <div class="progress-text positive">+12%</div>
+           </div>
+         </div>
+        
+         <div class="card card-success">
+           <i class="fas fa-users card-icon"></i>
+           <h3 class="card-title">Team Members</h3>
+           <div class="card-value" id="unique-team-members">--</div>
+           <div class="card-subtitle">
+             Recently met with <span id="recent-team-members">--</span> members
+           </div>
+           <div class="card-progress">
+             <div class="progress-bar">
+               <div class="progress-value" style="width: 80%; background-color: var(--success);"></div>
+             </div>
+             <div class="progress-text positive">80% coverage</div>
+           </div>
+         </div>
+        
+         <div class="card card-warning">
+           <i class="fas fa-tasks card-icon"></i>
+           <h3 class="card-title">Action Items</h3>
+           <div class="card-value" id="total-action-items">--</div>
+           <div class="card-subtitle">
+             <span id="completed-action-items">--</span> items completed
+           </div>
+           <div class="card-progress">
+             <div class="progress-bar">
+               <div class="progress-value" style="width: 45%; background-color: var(--warning);"></div>
+             </div>
+             <div class="progress-text">45% completed</div>
+           </div>
+         </div>
+        
+         <div class="card card-danger">
+           <i class="fas fa-calendar-check card-icon"></i>
+           <h3 class="card-title">Next Check-ins</h3>
+           <div class="card-value" id="upcoming-sessions">--</div>
+           <div class="card-subtitle">
+             <span id="overdue-sessions">--</span> sessions overdue
+           </div>
+           <div class="card-progress">
+             <div class="progress-bar">
+               <div class="progress-value" style="width: 30%; background-color: var(--danger);"></div>
+             </div>
+             <div class="progress-text negative">3 overdue</div>
+           </div>
+         </div>
+       </div>
+      
+       <!-- Filter bar -->
+       <div class="filter-bar">
+         <div class="filter-group">
+           <label class="filter-label">Team Member</label>
+           <select class="filter-input" id="filter-team-member">
+             <option value="">All Team Members</option>
+             <!-- Team members will be loaded here -->
+           </select>
+         </div>
+        
+         <div class="filter-group">
+           <label class="filter-label">Date Range</label>
+           <input type="date" class="filter-input" id="filter-date-start" placeholder="Start Date">
+         </div>
+        
+         <div class="filter-group">
+           <label class="filter-label">to</label>
+           <input type="date" class="filter-input" id="filter-date-end" placeholder="End Date">
+         </div>
+        
+         <div class="filter-group">
+           <label class="filter-label">Status</label>
+           <select class="filter-input" id="filter-status">
+             <option value="">All Status</option>
+             <option value="recent">Recent</option>
+             <option value="upcoming">Upcoming Check-in</option>
+             <option value="overdue">Overdue Check-in</option>
+           </select>
+         </div>
+        
+         <div class="filter-actions">
+           <button class="btn btn-primary" onclick="applyFilters()">
+             <i class="fas fa-filter"></i> Filter
+           </button>
+           <button class="btn btn-outline" onclick="resetFilters()">
+             <i class="fas fa-undo"></i> Reset
+           </button>
+         </div>
+       </div>
+      
+       <!-- Team members with missing sessions -->
+       <div class="section mb-6">
+         <div class="section-header">
+           <div>
+             <h2 class="section-title">
+               <i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i>
+               Members Needing Attention
+             </h2>
+             <p class="section-subtitle">Team members with no recent one-on-one sessions</p>
+           </div>
+         </div>
+        
+         <div class="table-container">
+           <table class="table" id="attention-table">
+             <thead>
+               <tr>
+                 <th>Team Member</th>
+                 <th>Last Session</th>
+                 <th>Days Since</th>
+                 <th>Status</th>
+                 <th>Actions</th>
+               </tr>
+             </thead>
+             <tbody>
+               <!-- This will be populated with data -->
+             </tbody>
+           </table>
+         </div>
+       </div>
+      
+       <!-- Recent sessions section -->
+       <div class="section mb-6">
+         <div class="section-header">
+           <div>
+             <h2 class="section-title">
+               <i class="fas fa-clock" style="color: var(--primary);"></i>
+               Recent One-on-One Sessions
+             </h2>
+             <p class="section-subtitle">Sessions from the past 30 days</p>
+           </div>
+          
+           <div class="section-actions">
+             <button class="btn btn-outline btn-sm" id="view-toggle-btn" onclick="toggleViewMode()">
+               <i class="fas fa-table"></i> Table View
+             </button>
+             <button class="btn btn-outline btn-sm" onclick="sortSessions('date')">
+               <i class="fas fa-sort-amount-down"></i> Sort by Date
+             </button>
+           </div>
+         </div>
+        
+         <div id="sessions-grid" class="session-grid mb-4">
+           <!-- Sessions will be loaded here -->
+         </div>
+        
+         <div id="sessions-table-container" class="table-container hidden">
+           <table class="table" id="sessions-table">
+             <thead>
+               <tr>
+                 <th>Team Member</th>
+                 <th>Date</th>
+                 <th>Summary</th>
+                 <th>Next Check-in</th>
+                 <th>Action Items</th>
+                 <th>Actions</th>
+               </tr>
+             </thead>
+             <tbody>
+               <!-- This will be populated with data -->
+             </tbody>
+           </table>
+         </div>
+        
+         <div id="sessions-empty" class="empty-state hidden">
+           <div class="empty-state-icon">
+             <i class="fas fa-clipboard"></i>
+           </div>
+           <h3 class="empty-state-title">No sessions found</h3>
+           <p class="empty-state-message">
+             There are no one-on-one sessions matching your current filters.
+             Try changing your filters or create a new session.
+           </p>
+           <button class="btn btn-primary" onclick="showNewSession()">
+             <i class="fas fa-plus"></i> Create New Session
+           </button>
+         </div>
+       </div>
+      
+       <!-- Charts section -->
+       <div class="section">
+         <div class="section-header">
+           <div>
+             <h2 class="section-title">
+               <i class="fas fa-chart-bar" style="color: var(--primary);"></i>
+               One-on-One Analytics
+             </h2>
+             <p class="section-subtitle">Visual insights into your one-on-one sessions</p>
+           </div>
+         </div>
+        
+         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+           <div class="chart-container">
+             <div class="chart-header">
+               <h3 class="chart-title">Sessions by Month</h3>
+             </div>
+             <canvas id="sessions-by-month-chart" class="chart-canvas"></canvas>
+           </div>
+          
+           <div class="chart-container">
+             <div class="chart-header">
+               <h3 class="chart-title">Sessions by Team Member</h3>
+             </div>
+             <canvas id="sessions-by-member-chart" class="chart-canvas"></canvas>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+ <!-- Include Chart.js -->
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+   // Global variables
+   let allSessions = [];
+   let teamMembers = [];
+   let viewMode = 'grid'; // 'grid' or 'table'
+  
+   // Initialize the dashboard
+   window.onload = function() {
+     loadDashboardData();
+   };
+  
+   // Load dashboard data
+   function loadDashboardData() {
+     // Simulate loading state
+     document.getElementById('total-sessions').textContent = 'Loading...';
+     document.getElementById('unique-team-members').textContent = 'Loading...';
+     document.getElementById('total-action-items').textContent = 'Loading...';
+     document.getElementById('upcoming-sessions').textContent = 'Loading...';
+    
+     // Fetch data from server
+     google.script.run
+       .withSuccessHandler(handleDashboardData)
+       .withFailureHandler(handleError)
+       .getOneOnOneStats();
+    
+     // Fetch team members for filter
+     google.script.run
+       .withSuccessHandler(handleTeamMembers)
+       .withFailureHandler(handleError)
+       .getTeamMembers();
+    
+     // Fetch sessions
+     google.script.run
+       .withSuccessHandler(handleSessionsData)
+       .withFailureHandler(handleError)
+       .getAllSessions();
+   }
+  
+   // Handle dashboard stats data
+   function handleDashboardData(response) {
+     if (!response || !response.success) {
+       showError(response ? response.message : 'Failed to load dashboard data');
+       return;
+     }
+    
+     const stats = response.data;
+    
+     // Update stats cards
+     document.getElementById('total-sessions').textContent = stats.totalSessions || 0;
+     document.getElementById('sessions-this-month').textContent = stats.sessionsThisMonth || 0;
+     document.getElementById('unique-team-members').textContent = stats.uniqueTeamMembers || 0;
+     document.getElementById('total-action-items').textContent = stats.actionItems || 0;
+     document.getElementById('upcoming-sessions').textContent = stats.upcomingSessions || 0;
+     document.getElementById('overdue-sessions').textContent = stats.overdueSessions || 0;
+    
+     // Populate team members needing attention
+     if (stats.teamMemberStats && stats.teamMemberStats.length > 0) {
+       populateAttentionTable(stats.teamMemberStats);
+     } else {
+       document.querySelector('#attention-table tbody').innerHTML =
+         '<tr><td colspan="5" style="text-align: center;">No team members need attention at this time</td></tr>';
+     }
+    
+     // Initialize charts
+     initializeCharts();
+   }
+  
+   // Handle team members data
+   function handleTeamMembers(response) {
+     if (!response || !response.success) {
+       return;
+     }
+    
+     teamMembers = response.data || [];
+    
+     // Populate team member filter
+     const selectElement = document.getElementById('filter-team-member');
+    
+     // Clear existing options (except first one)
+     while (selectElement.options.length > 1) {
+       selectElement.remove(1);
+     }
+    
+     // Add team members to select
+     teamMembers.forEach(member => {
+       const option = document.createElement('option');
+       option.value = member.name;
+       option.textContent = member.name;
+       selectElement.appendChild(option);
+     });
+   }
+  
+   // Handle sessions data
+   function handleSessionsData(response) {
+     if (!response || !response.success) {
+       showError(response ? response.message : 'Failed to load sessions');
+       return;
+     }
+    
+     allSessions = response.data || [];
+     displaySessions(allSessions);
+   }
+  
+   // Display sessions
+   function displaySessions(sessions) {
+     const gridContainer = document.getElementById('sessions-grid');
+     const tableContainer = document.getElementById('sessions-table-container');
+     const emptyState = document.getElementById('sessions-empty');
+     const tableBody = document.querySelector('#sessions-table tbody');
+    
+     // Clear existing content
+     gridContainer.innerHTML = '';
+     tableBody.innerHTML = '';
+    
+     // Show/hide empty state if no sessions
+     if (!sessions || sessions.length === 0) {
+       gridContainer.classList.add('hidden');
+       tableContainer.classList.add('hidden');
+       emptyState.classList.remove('hidden');
+       return;
+     }
+    
+     // Show grid or table based on view mode
+     if (viewMode === 'grid') {
+       gridContainer.classList.remove('hidden');
+       tableContainer.classList.add('hidden');
+     } else {
+       gridContainer.classList.add('hidden');
+       tableContainer.classList.remove('hidden');
+     }
+    
+     emptyState.classList.add('hidden');
+    
+     // Populate grid view
+     sessions.forEach(session => {
+       gridContainer.appendChild(createSessionCard(session));
+     });
+    
+     // Populate table view
+     sessions.forEach(session => {
+       const row = document.createElement('tr');
+      
+       // Team member
+       const teamMemberCell = document.createElement('td');
+       teamMemberCell.textContent = session.teamMember || 'Unknown';
+       row.appendChild(teamMemberCell);
+      
+       // Date
+       const dateCell = document.createElement('td');
+       dateCell.textContent = formatDate(session.date);
+       row.appendChild(dateCell);
+      
+       // Summary
+       const summaryCell = document.createElement('td');
+       summaryCell.textContent = session.summary || 'No summary';
+       row.appendChild(summaryCell);
+      
+       // Next check-in
+       const nextCheckInCell = document.createElement('td');
+       if (session.nextCheckInDate) {
+         const nextDate = new Date(session.nextCheckInDate);
+         const now = new Date();
+        
+         if (nextDate < now) {
+           nextCheckInCell.innerHTML = `<span style="color: var(--danger);">${formatDate(session.nextCheckInDate)} (Overdue)</span>`;
+         } else {
+           nextCheckInCell.textContent = formatDate(session.nextCheckInDate);
+         }
+       } else {
+         nextCheckInCell.textContent = 'Not scheduled';
+       }
+       row.appendChild(nextCheckInCell);
+      
+       // Action items
+       const actionItemsCell = document.createElement('td');
+       const actionItems = session.actionItems || [];
+       actionItemsCell.textContent = actionItems.length ? `${actionItems.length} items` : 'None';
+       row.appendChild(actionItemsCell);
+      
+       // Actions
+       const actionsCell = document.createElement('td');
+       actionsCell.innerHTML = `
+         <button class="btn btn-outline btn-xs" onclick="viewSession('${session.id}')">
+           <i class="fas fa-eye"></i> View
+         </button>
+         <button class="btn btn-outline btn-xs" onclick="editSession('${session.id}')">
+           <i class="fas fa-edit"></i> Edit
+         </button>
+       `;
+       row.appendChild(actionsCell);
+      
+       tableBody.appendChild(row);
+     });
+   }
+  
+   // Create a session card element
+   function createSessionCard(session) {
+     const card = document.createElement('div');
+     card.className = 'session-card';
+    
+     // Determine badge type
+     let badgeType = 'recent';
+     let badgeText = 'Recent';
+    
+     if (session.nextCheckInDate) {
+       const nextDate = new Date(session.nextCheckInDate);
+       const now = new Date();
+      
+       if (nextDate < now) {
+         badgeType = 'overdue';
+         badgeText = 'Overdue Check-in';
+       } else {
+         badgeType = 'upcoming';
+         badgeText = 'Upcoming Check-in';
+       }
+     }
+    
+     // Create initials for avatar
+     const initials = getInitials(session.teamMember || 'Unknown');
+    
+     // Format date
+     const formattedDate = formatDate(session.date);
+    
+     // Count action items
+     const actionItems = session.actionItems || [];
+     const completedItems = actionItems.filter(item => item.status && item.status.toLowerCase() === 'completed').length;
+    
+     card.innerHTML = `
+       <div class="session-header">
+         <div class="session-avatar">${initials}</div>
+         <div class="session-title">
+           <div class="session-name">${session.teamMember || 'Unknown'}</div>
+           <div class="session-meta">
+             <div class="session-meta-item">
+               <i class="fas fa-calendar-alt"></i>
+               ${formattedDate}
+             </div>
+             ${session.manager ? `
+               <span class="session-meta-divider"></span>
+               <div class="session-meta-item">
+                 <i class="fas fa-user"></i>
+                 ${session.manager}
+               </div>
+             ` : ''}
+           </div>
+         </div>
+         <div class="session-badge ${badgeType}">${badgeText}</div>
+       </div>
+      
+       <div class="session-content">
+         <div class="session-summary">
+           ${session.summary || 'No summary provided for this session.'}
+         </div>
+        
+         ${session.statusPriority ? `
+           <div class="session-section">
+             <div class="session-section-title">
+               <i class="fas fa-flag"></i> Status & Priorities
+             </div>
+             <div class="session-section-content">
+               ${session.statusPriority}
+             </div>
+           </div>
+         ` : ''}
+        
+         ${actionItems.length > 0 ? `
+           <div class="session-section">
+             <div class="session-section-title">
+               <i class="fas fa-tasks"></i> Action Items (${completedItems}/${actionItems.length})
+             </div>
+             <div class="action-items">
+               ${actionItems.slice(0, 3).map(item => `
+                 <div class="action-item">
+                   <div class="action-checkbox ${item.status && item.status.toLowerCase() === 'completed' ? 'checked' : ''}">
+                     ${item.status && item.status.toLowerCase() === 'completed' ? '<i class="fas fa-check"></i>' : ''}
+                   </div>
+                   <div class="action-text ${item.status && item.status.toLowerCase() === 'completed' ? 'completed' : ''}">
+                     ${item.description || 'No description'}
+                   </div>
+                 </div>
+               `).join('')}
+               ${actionItems.length > 3 ? `
+                 <div class="text-sm text-gray">
+                   +${actionItems.length - 3} more items
+                 </div>
+               ` : ''}
+             </div>
+           </div>
+         ` : ''}
+       </div>
+      
+       <div class="session-footer">
+         ${session.nextCheckInDate ? `
+           <div class="session-next">
+             <i class="fas fa-calendar-check"></i>
+             <span>Next: <span class="session-next-date ${new Date(session.nextCheckInDate) < new Date() ? 'overdue' : 'upcoming'}">
+               ${formatDate(session.nextCheckInDate)}
+             </span></span>
+           </div>
+         ` : `
+           <div class="session-next">
+             <i class="fas fa-calendar-times"></i>
+             <span>No next session scheduled</span>
+           </div>
+         `}
+        
+         <div class="session-actions">
+           <span class="session-action" onclick="viewSession('${session.id}')" title="View Details">
+             <i class="fas fa-eye"></i>
+           </span>
+           <span class="session-action" onclick="editSession('${session.id}')" title="Edit Session">
+             <i class="fas fa-edit"></i>
+           </span>
+         </div>
+       </div>
+     `;
+    
+     // Add click event to the card
+     card.addEventListener('click', function(e) {
+       // Prevent triggering if clicking on action icons
+               // Prevent triggering if clicking on action icons
+       if (e.target.closest('.session-action') || e.target.closest('.action-checkbox')) {
+         return;
+       }
+      
+       // Otherwise, view the session details
+       viewSession(session.id);
+     });
+    
+     return card;
+   }
+  
+   // Populate the attention table
+   function populateAttentionTable(teamMemberStats) {
+     const tableBody = document.querySelector('#attention-table tbody');
+     tableBody.innerHTML = '';
+    
+     // Sort by days since last session (most days first)
+     teamMemberStats.sort((a, b) => b.daysSinceLastSession - a.daysSinceLastSession);
+    
+     // Take only top 5
+     const topMembers = teamMemberStats.slice(0, 5);
+    
+     topMembers.forEach(member => {
+       const row = document.createElement('tr');
+      
+       // Team Member
+       const nameCell = document.createElement('td');
+       nameCell.textContent = member.teamMember;
+       row.appendChild(nameCell);
+      
+       // Last Session Date
+       const lastSessionCell = document.createElement('td');
+       lastSessionCell.textContent = formatDate(member.lastSessionDate);
+       row.appendChild(lastSessionCell);
+      
+       // Days Since
+       const daysCell = document.createElement('td');
+       daysCell.textContent = `${member.daysSinceLastSession} days`;
+      
+       // Add a class for styling based on urgency
+       if (member.daysSinceLastSession > 30) {
+         daysCell.style.color = 'var(--danger)';
+         daysCell.style.fontWeight = '600';
+       } else if (member.daysSinceLastSession > 14) {
+         daysCell.style.color = 'var(--warning)';
+         daysCell.style.fontWeight = '500';
+       }
+      
+       row.appendChild(daysCell);
+      
+       // Status
+       const statusCell = document.createElement('td');
+      
+       if (member.daysSinceLastSession > 30) {
+         statusCell.innerHTML = '<span class="badge badge-danger">Needs Attention</span>';
+       } else if (member.daysSinceLastSession > 14) {
+         statusCell.innerHTML = '<span class="badge badge-warning">Follow Up Soon</span>';
+       } else {
+         statusCell.innerHTML = '<span class="badge badge-primary">Regular Check-in</span>';
+       }
+      
+       row.appendChild(statusCell);
+      
+       // Actions
+       const actionsCell = document.createElement('td');
+       actionsCell.innerHTML = `
+         <button class="btn btn-primary btn-sm" onclick="scheduleSession('${member.teamMember}')">
+           <i class="fas fa-calendar-plus"></i> Schedule
+         </button>
+       `;
+       row.appendChild(actionsCell);
+      
+       tableBody.appendChild(row);
+     });
+   }
+  
+   // Initialize charts
+   function initializeCharts() {
+     // Get chart contexts
+     const sessionsByMonthCtx = document.getElementById('sessions-by-month-chart').getContext('2d');
+     const sessionsByMemberCtx = document.getElementById('sessions-by-member-chart').getContext('2d');
+    
+     // Sample data for charts (in a real app, this would come from the server)
+     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+     const sessionCounts = [4, 6, 5, 8, 9, 7];
+    
+     const teamMembers = ['Alex', 'Jordan', 'Taylor', 'Morgan', 'Casey'];
+     const memberCounts = [3, 5, 2, 4, 3];
+    
+     // Sessions by month chart
+     new Chart(sessionsByMonthCtx, {
+       type: 'bar',
+       data: {
+         labels: months,
+         datasets: [{
+           label: 'Sessions',
+           data: sessionCounts,
+           backgroundColor: 'rgba(99, 102, 241, 0.6)',
+           borderColor: 'rgba(99, 102, 241, 1)',
+           borderWidth: 1
+         }]
+       },
+       options: {
+         responsive: true,
+         maintainAspectRatio: false,
+         scales: {
+           y: {
+             beginAtZero: true,
+             ticks: {
+               precision: 0
+             }
+           }
+         }
+       }
+     });
+    
+     // Sessions by team member chart
+     new Chart(sessionsByMemberCtx, {
+       type: 'doughnut',
+       data: {
+         labels: teamMembers,
+         datasets: [{
+           data: memberCounts,
+           backgroundColor: [
+             'rgba(99, 102, 241, 0.6)',
+             'rgba(16, 185, 129, 0.6)',
+             'rgba(245, 158, 11, 0.6)',
+             'rgba(239, 68, 68, 0.6)',
+             'rgba(59, 130, 246, 0.6)'
+           ],
+           borderColor: [
+             'rgba(99, 102, 241, 1)',
+             'rgba(16, 185, 129, 1)',
+             'rgba(245, 158, 11, 1)',
+             'rgba(239, 68, 68, 1)',
+             'rgba(59, 130, 246, 1)'
+           ],
+           borderWidth: 1
+         }]
+       },
+       options: {
+         responsive: true,
+         maintainAspectRatio: false
+       }
+     });
+   }
+  
+   // Toggle between grid and table view
+   function toggleViewMode() {
+     const gridContainer = document.getElementById('sessions-grid');
+     const tableContainer = document.getElementById('sessions-table-container');
+     const toggleButton = document.getElementById('view-toggle-btn');
+    
+     if (viewMode === 'grid') {
+       viewMode = 'table';
+       gridContainer.classList.add('hidden');
+       tableContainer.classList.remove('hidden');
+       toggleButton.innerHTML = '<i class="fas fa-th-large"></i> Grid View';
+     } else {
+       viewMode = 'grid';
+       gridContainer.classList.remove('hidden');
+       tableContainer.classList.add('hidden');
+       toggleButton.innerHTML = '<i class="fas fa-table"></i> Table View';
+     }
+   }
+  
+   // Apply filters
+   function applyFilters() {
+     const teamMember = document.getElementById('filter-team-member').value;
+     const dateStart = document.getElementById('filter-date-start').value;
+     const dateEnd = document.getElementById('filter-date-end').value;
+     const status = document.getElementById('filter-status').value;
+    
+     let filtered = [...allSessions];
+    
+     // Filter by team member
+     if (teamMember) {
+       filtered = filtered.filter(session =>
+         session.teamMember && session.teamMember.toLowerCase() === teamMember.toLowerCase()
+       );
+     }
+    
+     // Filter by start date
+     if (dateStart) {
+       const startDate = new Date(dateStart);
+       filtered = filtered.filter(session => {
+         const sessionDate = new Date(session.date);
+         return sessionDate >= startDate;
+       });
+     }
+    
+     // Filter by end date
+     if (dateEnd) {
+       const endDate = new Date(dateEnd);
+       // Set to end of day
+       endDate.setHours(23, 59, 59, 999);
+      
+       filtered = filtered.filter(session => {
+         const sessionDate = new Date(session.date);
+         return sessionDate <= endDate;
+       });
+     }
+    
+     // Filter by status
+     if (status) {
+       const now = new Date();
+      
+       if (status === 'recent') {
+         // Sessions in the last 7 days
+         const sevenDaysAgo = new Date();
+         sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        
+         filtered = filtered.filter(session => {
+           const sessionDate = new Date(session.date);
+           return sessionDate >= sevenDaysAgo;
+         });
+       } else if (status === 'upcoming') {
+         // Sessions with upcoming check-ins
+         filtered = filtered.filter(session => {
+           if (!session.nextCheckInDate) return false;
+          
+           const nextDate = new Date(session.nextCheckInDate);
+           return nextDate >= now;
+         });
+       } else if (status === 'overdue') {
+         // Sessions with overdue check-ins
+         filtered = filtered.filter(session => {
+           if (!session.nextCheckInDate) return false;
+          
+           const nextDate = new Date(session.nextCheckInDate);
+           return nextDate < now;
+         });
+       }
+     }
+    
+     // Display filtered sessions
+     displaySessions(filtered);
+   }
+  
+   // Reset filters
+   function resetFilters() {
+     document.getElementById('filter-team-member').value = '';
+     document.getElementById('filter-date-start').value = '';
+     document.getElementById('filter-date-end').value = '';
+     document.getElementById('filter-status').value = '';
+    
+     // Display all sessions
+     displaySessions(allSessions);
+   }
+  
+   // Sort sessions
+   function sortSessions(field) {
+     // Get current displayed sessions
+     const container = document.getElementById('sessions-grid');
+     const cards = container.querySelectorAll('.session-card');
+    
+     // No need to sort if there are no sessions
+     if (cards.length === 0) return;
+    
+     // Get session IDs from current cards to get the right subset of allSessions
+     const sessionIds = [];
+     cards.forEach(card => {
+       const actions = card.querySelectorAll('.session-action');
+       if (actions.length > 0) {
+         const onclick = actions[0].getAttribute('onclick');
+         if (onclick) {
+           const match = onclick.match(/viewSession\('(.+?)'\)/);
+           if (match && match[1]) {
+             sessionIds.push(match[1]);
+           }
+         }
+       }
+     });
+    
+     // Filter sessions to only include those currently displayed
+     const sessionsToSort = allSessions.filter(session =>
+       sessionIds.includes(session.id)
+     );
+    
+     // Sort sessions
+     if (field === 'date') {
+       sessionsToSort.sort((a, b) => {
+         const dateA = new Date(a.date);
+         const dateB = new Date(b.date);
+         return dateB - dateA; // Most recent first
+       });
+     } else if (field === 'name') {
+       sessionsToSort.sort((a, b) => {
+         const nameA = a.teamMember || '';
+         const nameB = b.teamMember || '';
+         return nameA.localeCompare(nameB);
+       });
+     }
+    
+     // Display sorted sessions
+     displaySessions(sessionsToSort);
+   }
+  
+   // View session details
+   function viewSession(sessionId) {
+     if (!sessionId) return;
+    
+     // Open the session details view
+     google.script.run.showOneOnOneDetails(sessionId);
+   }
+  
+   // Edit session
+   function editSession(sessionId) {
+     if (!sessionId) return;
+    
+     // Open the session edit form
+     google.script.run.showOneOnOneForm(sessionId);
+   }
+  
+   // Show new session form
+   function showNewSession() {
+     // Check if a team member is selected in the filter
+     const teamMember = document.getElementById('filter-team-member').value;
+    
+     // Open the new session form, possibly with pre-selected team member
+     if (teamMember) {
+       google.script.run.showOneOnOneForm(teamMember);
+     } else {
+       google.script.run.showOneOnOneForm();
+     }
+   }
+  
+   // Schedule a new session with a team member
+   function scheduleSession(teamMember) {
+     if (!teamMember) return;
+    
+     google.script.run.showOneOnOneForm(teamMember);
+   }
+  
+   // Export data
+   function exportData() {
+     // Get current filter values
+     const teamMember = document.getElementById('filter-team-member').value;
+     const dateStart = document.getElementById('filter-date-start').value;
+     const dateEnd = document.getElementById('filter-date-end').value;
+     const status = document.getElementById('filter-status').value;
+    
+     // Open export dialog
+     google.script.run.withSuccessHandler(function(result) {
+       if (result && result.success) {
+         alert('Export successful!');
+       } else {
+         alert('Export failed. Please try again.');
+       }
+     }).showOneOnOneExport({
+       teamMember: teamMember,
+       dateStart: dateStart,
+       dateEnd: dateEnd,
+       status: status
+     });
+   }
+  
+   // Handle navigation
+   function navigateTo(section) {
+     switch(section) {
+       case 'dashboard':
+         google.script.run.showDashboard();
+         break;
+       case 'team-view':
+         google.script.run.showTeamView();
+         break;
+       case 'one-on-one':
+         // Already on the one-on-one dashboard
+         break;
+       case 'metrics':
+         google.script.run.showMetricsDashboard();
+         break;
+       case 'schedule':
+         google.script.run.showScheduleManager();
+         break;
+       case 'time-tracking':
+         google.script.run.showTimeTracker();
+         break;
+       case 'qa-reviews':
+         google.script.run.showQAReviewForm();
+         break;
+       case 'qa-reports':
+         google.script.run.showQADashboard();
+         break;
+       case 'tasks':
+         google.script.run.showTasksList();
+         break;
+       case 'general-notes':
+         google.script.run.showGeneralNotes();
+         break;
+       case 'settings':
+         google.script.run.showSettings();
+         break;
+     }
+   }
+  
+   // Format date
+   function formatDate(dateValue) {
+     if (!dateValue) return 'N/A';
+    
+     const date = new Date(dateValue);
+    
+     // Check if date is valid
+     if (isNaN(date.getTime())) {
+       return 'Invalid date';
+     }
+    
+     // Format: Mar 15, 2025
+     const options = { year: 'numeric', month: 'short', day: 'numeric' };
+     return date.toLocaleDateString(undefined, options);
+   }
+  
+   // Get initials from name
+   function getInitials(name) {
+     if (!name) return '?';
+    
+     const parts = name.split(' ');
+     if (parts.length === 1) {
+       return parts[0].charAt(0).toUpperCase();
+     }
+    
+     return (parts[0].charAt(0) + parts[parts.length - 1].charAt(0)).toUpperCase();
+   }
+  
+   // Show error message
+   function handleError(error) {
+     console.error('Error:', error);
+     alert('An error occurred: ' + error);
+   }
+  
+   function showError(message) {
+     console.error('Error:', message);
+     alert('Error: ' + message);
+   }
+ </script>
+</body>
+</html>
+
+
+One one one notes form:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base target="_top">
+  <title>Counselor 1:1 Meeting Notes</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      /* Primary colors */
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #c7d2fe;
+      --primary-bg: #eef2ff;
+      
+      /* Secondary colors */
+      --secondary: #f43f5e;
+      --secondary-dark: #e11d48;
+      --secondary-light: #fecdd3;
+      --secondary-bg: #fff1f2;
+      
+      /* Success colors */
+      --success: #10b981;
+      --success-dark: #059669;
+      --success-light: #a7f3d0;
+      --success-bg: #ecfdf5;
+      
+      /* Warning colors */
+      --warning: #f59e0b;
+      --warning-dark: #d97706;
+      --warning-light: #fde68a;
+      --warning-bg: #fffbeb;
+      
+      /* Danger colors */
+      --danger: #ef4444;
+      --danger-dark: #dc2626;
+      --danger-light: #fca5a5;
+      --danger-bg: #fee2e2;
+      
+      /* Neutral colors */
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html, body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--gray-800);
+      background-color: var(--gray-50);
+      height: 100%;
+      width: 100%;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 100%;
+      height: 100vh;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .header {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    h1 i {
+      color: var(--primary);
+    }
+    
+    .header p {
+      color: var(--gray-500);
+      font-size: 0.875rem;
+    }
+    
+    .user-metadata {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    
+    .success-message, .error-message {
+      padding: 1rem;
+      border-radius: 0.375rem;
+      margin-bottom: 1rem;
+      display: none;
+      animation: slideDown 0.3s ease-out;
+      position: relative;
+    }
+    
+    .success-message {
+      background-color: var(--success-bg);
+      color: var(--success-dark);
+      border-left: 4px solid var(--success);
+    }
+    
+    .error-message {
+      background-color: var(--danger-bg);
+      color: var(--danger-dark);
+      border-left: 4px solid var(--danger);
+    }
+    
+    @keyframes slideDown {
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .message-animation {
+      animation: pulse 0.5s ease-in-out;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+    
+    .message-hide-animation {
+      animation: slideUp 0.3s ease-in-out;
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-10px); opacity: 0; }
+    }
+    
+    .close-message {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: inherit;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    
+    .close-message:hover {
+      opacity: 1;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .counselor-info-card {
+      border-left: 4px solid var(--primary);
+    }
+    
+    .section-header {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--gray-800);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    h4.section-header {
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      color: var(--gray-700);
+      border-top: 1px solid var(--gray-200);
+      padding-top: 1.25rem;
+    }
+    
+    .time-allocation {
+      color: var(--gray-500);
+      font-size: 0.875rem;
+      font-weight: normal;
+      margin-left: 0.5rem;
+    }
+    
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .form-col {
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    .form-group.required label::after {
+      content: "*";
+      color: var(--danger);
+      margin-left: 0.25rem;
+    }
+    
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gray-700);
+      margin-bottom: 0.375rem;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.625rem;
+      border: 1px solid var(--gray-300);
+      border-radius: 0.375rem;
+      font-family: inherit;
+      font-size: 0.875rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-light);
+    }
+    
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .error-field {
+      border-color: var(--danger) !important;
+    }
+    
+    .field-validation {
+      color: var(--danger);
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+    
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .checkbox-container input[type="checkbox"] {
+      margin-right: 0.5rem;
+      width: 1rem;
+      height: 1rem;
+    }
+    
+    .rating-group {
+      margin-top: 0.5rem;
+    }
+    
+    .rating-label {
+      font-size: 0.875rem;
+      margin-bottom: 0.375rem;
+      color: var(--gray-600);
+    }
+    
+    .rating-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .rating-options label {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      cursor: pointer;
+    }
+    
+    .rating-options input[type="radio"] {
+      margin-right: 0.375rem;
+    }
+    
+    .tab-container {
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tabs {
+      display: flex;
+      background-color: var(--gray-100);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    .tab {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--gray-600);
+      position: relative;
+      transition: all 0.3s;
+    }
+    
+    .tab.active {
+      color: var(--primary);
+      background-color: white;
+    }
+    
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--primary);
+    }
+    
+    .tab-transition {
+      transition: all 0.2s ease-in-out;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .content-transition {
+      transition: opacity 0.2s ease-in-out;
+    }
+    
+    .tab-fade-in {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    .tab-fade-out {
+      opacity: 0;
+    }
+    
+    .section-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--gray-200);
+    }
+    
+    .btn {
+      padding: 0.625rem 1.25rem;
+      font-weight: 500;
+      border-radius: 0.375rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid transparent;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .btn-secondary {
+      background-color: white;
+      color: var(--gray-700);
+      border: 1px solid var(--gray-300);
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--gray-100);
+    }
+    
+    .btn-sm {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.875rem;
+    }
+    
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    
+    .btn.saving {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    
+    .loading-spinner {
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 0.8s linear infinite;
+      position: absolute;
+      left: 0.75rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    #actionItemsContainer {
+      margin-bottom: 1rem;
+    }
+    
+    .action-item {
+      background-color: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    
+    .action-item-appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .action-item-remove-anim {
+      transition: opacity 0.3s, transform 0.3s;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    
+    .action-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .action-item-title {
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+    
+    .action-item-remove {
+      background: none;
+      border: none;
+      color: var(--gray-500);
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    
+    .action-item-remove:hover {
+      color: var(--danger);
+    }
+    
+    .action-item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .action-item-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .action-item-details .form-group {
+      flex: 1;
+      min-width: 150px;
+      margin-bottom: 0;
+    }
+    
+    .action-completion-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--gray-600);
+    }
+    
+    .status-dot {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+    }
+    
+    .status-not-started {
+      background-color: var(--gray-300);
+    }
+    
+    .status-in-progress {
+      background-color: var(--warning);
+    }
+    
+    .status-completed {
+      background-color: var(--success);
+    }
+    
+    .status-blocked {
+      background-color: var(--danger);
+    }
+    
+    .counselor-preview-container {
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeIn 0.3s forwards;
+      animation-delay: 0.2s;
+    }
+    
+    .counselor-preview-card {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background-color: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 0.5rem;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .counselor-preview-card.animate-in {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .counselor-avatar {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background-color: var(--gray-300);
+      color: var(--gray-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-right: 1rem;
+      transition: all 0.2s ease;
+    }
+    
+    .counselor-avatar.has-initial {
+      background-color: var(--primary-bg);
+      color: var(--primary);
+    }
+    
+    .counselor-preview-details {
+      flex: 1;
+    }
+    
+    .counselor-preview-name {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--gray-800);
+    }
+    
+    .counselor-preview-role {
+      color: var(--gray-600);
+      font-size: 0.875rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .counselor-preview-email {
+      color: var(--gray-500);
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .counselor-preview-email.invalid-email {
+      color: var(--danger);
+    }
+    
+    .counselor-preview-status {
+      display: inline-block;
+      padding: 0.125rem 0.5rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-right: 0.75rem;
+    }
+    
+    .status-active {
+      background-color: var(--success-bg);
+      color: var(--success-dark);
+    }
+    
+    .status-training {
+      background-color: var(--primary-bg);
+      color: var(--primary-dark);
+    }
+    
+    .status-inactive {
+      background-color: var(--gray-100);
+      color: var(--gray-600);
+    }
+    
+    .status-leave {
+      background-color: var(--warning-bg);
+      color: var(--warning-dark);
+    }
+    
+    .counselor-preview-team {
+      display: inline-block;
+      color: var(--gray-600);
+      font-size: 0.75rem;
+    }
+    
+    .enhanced-tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+    
+    .tooltip-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background-color: var(--gray-400);
+      color: white;
+      font-size: 0.625rem;
+      font-weight: 700;
+      cursor: help;
+    }
+    
+    .tooltip-content {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--gray-800);
+      color: white;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      width: 200px;
+      font-size: 0.75rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s ease;
+      pointer-events: none;
+      z-index: 10;
+    }
+    
+    .tooltip-content::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: var(--gray-800) transparent transparent transparent;
+    }
+    
+    .enhanced-tooltip:hover .tooltip-content,
+    .tooltip-icon:focus + .tooltip-content {
+      opacity: 1;
+      visibility: visible;
+      bottom: calc(100% + 10px);
+    }
+    
+    .unsaved-changes-indicator {
+      position: fixed;
+      bottom: -80px;
+      right: 1rem;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: bottom 0.3s ease;
+      z-index: 100;
+    }
+    
+    .unsaved-changes-indicator.show {
+      bottom: 1rem;
+    }
+    
+    .unsaved-message {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gray-700);
+      font-size: 0.875rem;
+    }
+    
+    .pulse-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      background-color: var(--warning);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+      70% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+    
+    .save-now-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.375rem 0.75rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .save-now-btn:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .highlight-animation {
+      animation: highlight 1.5s ease-in-out;
+    }
+    
+    @keyframes highlight {
+      0%, 100% { background-color: transparent; }
+      30% { background-color: var(--primary-bg); }
+      70% { background-color: var(--primary-bg); }
+    }
+    
+    .modern-dialog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+    }
+    
+    .modern-dialog.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .modern-dialog-content {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      max-width: 500px;
+      width: 90%;
+      transform: scale(0.9);
+      transition: transform 0.3s;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .modern-dialog.show .modern-dialog-content {
+      transform: scale(1);
+    }
+    
+    .modern-dialog h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--gray-800);
+    }
+    
+    .modern-dialog p {
+      margin-bottom: 1.25rem;
+      color: var(--gray-600);
+    }
+    
+    .modern-dialog-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    
+    .follow-up-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s;
+    }
+    
+    .follow-up-modal.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .follow-up-content {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      transform: scale(0.9);
+      transition: transform 0.3s;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    .follow-up-modal.show .follow-up-content {
+      transform: scale(1);
+    }
+    
+    .follow-up-content h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--gray-800);
+    }
+    
+    .follow-up-content p {
+      margin-bottom: 1.25rem;
+      color: var(--gray-600);
+    }
+    
+    .follow-up-actions {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    
+    .email-sending-animation {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background-color: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    
+    .email-sending-animation.animate {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .sending-text {
+      font-weight: 500;
+      color: var(--gray-700);
+    }
+    
+    .sending-text.success {
+      color: var(--success);
+    }
+    
+    .sending-text.error {
+      color: var(--danger);
+    }
+    
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary);
+      top: -10px;
+      animation: fall 3s ease-out forwards;
+    }
+    
+    @keyframes fall {
+      to {
+        transform: translateY(calc(100vh + 10px)) rotate(90deg);
+        opacity: 0;
+      }
+    }
+    
+    .debug-panel {
+      position: fixed;
+      bottom: -300px;
+      right: 1rem;
+      width: 400px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-family: monospace;
+      z-index: 1000;
+      transition: bottom 0.3s ease;
+    }
+    
+    .debug-panel.show {
+      bottom: 1rem;
+    }
+    
+    #debugContent {
+      max-height: 250px;
+      overflow: auto;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><i class="fas fa-clipboard-list"></i> Counselor 1:1 Meeting Notes</h1>
+      <p>Document your biweekly one-on-one meetings with counselors</p>
+      <div class="user-metadata">
+             <div id="currentUser">User: </div>
+      <div id="currentDateTime">Date: </div>
+    </div>
+  </div>
+    
+  <div id="successMessage" class="success-message" role="alert">
+    Meeting notes saved successfully!
+    <button class="close-message" onclick="hideMessage('successMessage')" aria-label="Close message">&times;</button>
+  </div>
+    
+  <div id="errorMessage" class="error-message" role="alert">
+    An error occurred while saving meeting notes. Please try again.
+    <button class="close-message" onclick="hideMessage('errorMessage')" aria-label="Close message">&times;</button>
+  </div>
+    
+  <!-- Counselor Information Card -->
+  <div class="card counselor-info-card">
+    <h3 class="section-header"><i class="fas fa-user"></i> Counselor Information</h3>
+      
+    <div class="form-row">
+      <div class="form-col">
+        <div class="form-group required">
+          <label for="counselorName">Counselor Name</label>
+          <input type="text" id="counselorName" placeholder="Enter counselor's full name" required>
+          <div class="field-validation" id="nameValidation">Please enter the counselor's name</div>
+        </div>
+      </div>
+      <div class="form-col">
+        <div class="form-group required">
+          <label for="counselorEmail">Email Address</label>
+          <input type="email" id="counselorEmail" placeholder="Enter counselor's email address" required>
+          <div class="field-validation" id="emailValidation">Please enter a valid email address</div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="form-row">
+      <div class="form-col">
+        <div class="form-group">
+          <label for="counselorRole">Role</label>
+          <select id="counselorRole">
+            <option value="Counselor">Counselor</option>
+            <option value="Senior Counselor">Senior Counselor</option>
+            <option value="Team Lead">Team Lead</option>
+            <option value="Manager">Manager</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-col">
+        <div class="form-group">
+          <label for="counselorStatus">Status</label>
+          <select id="counselorStatus">
+            <option value="Active">Active</option>
+            <option value="Training">Training</option>
+            <option value="PTO">Planned Time Off</option>
+            <option value="LOA">Leave of Absence</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+    </div>
+      
+    <div class="form-row">
+      <div class="form-col">
+        <div class="form-group">
+          <label for="counselorTeam">Team</label>
+          <select id="counselorTeam">
+            <option value="Digital">Digital</option>
+            <option value="Lifeline">Lifeline</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-col">
+        <div class="form-group">
+          <label for="counselorStartDate">Start Date</label>
+          <input type="date" id="counselorStartDate">
+        </div>
+      </div>
+    </div>
+    <!-- Counselor preview will be inserted here by JavaScript -->
+  </div>
+    
+  <div id="meetingContent">
+    <div class="tab-container">
+      <div class="tabs" role="tablist">
+        <div class="tab active" role="tab" aria-selected="true" id="preTabBtn" onclick="showTab('preTab')" aria-controls="preTab" tabindex="0">Pre-Meeting</div>
+        <div class="tab" role="tab" aria-selected="false" id="duringTabBtn" onclick="showTab('duringTab')" aria-controls="duringTab" tabindex="0">During Meeting</div>
+        <div class="tab" role="tab" aria-selected="false" id="postTabBtn" onclick="showTab('postTab')" aria-controls="postTab" tabindex="0">Post-Meeting</div>
+      </div>
+        
+      <!-- Pre-Meeting Tab -->
+      <div id="preTab" class="tab-content active" role="tabpanel" aria-labelledby="preTabBtn">
+        <div class="card">
+          <h3 class="section-header"><i class="fas fa-clipboard-check"></i> Pre-Meeting Preparation</h3>
+            
+          <div class="form-group">
+            <label>Preparation Checklist</label>
+            <div class="checkbox-container">
+              <input type="checkbox" id="prepReviewPrevious">
+              <label for="prepReviewPrevious">Review previous meeting notes</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="prepCheckMetrics">
+              <label for="prepCheckMetrics">Check performance metrics</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="prepGatherUpdates">
+              <label for="prepGatherUpdates">Gather relevant team/department updates</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="prepDiscussionPoints">
+              <label for="prepDiscussionPoints">Prepare preliminary discussion points</label>
+            </div>
+          </div>
+            
+          <div class="form-group">
+            <label>Data Collection</label>
+            <div class="checkbox-container">
+              <input type="checkbox" id="dataReviewCalls">
+              <label for="dataReviewCalls">Review recent call quality reports</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="dataCheckIndicators">
+              <label for="dataCheckIndicators">Check individual performance indicators</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="dataNoteIssues">
+              <label for="dataNoteIssues">Note any team-wide or individual challenges</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="dataIdentifyResources">
+              <label for="dataIdentifyResources">Identify potential support resources</label>
+            </div>
+          </div>
+            
+          <div class="form-group">
+            <label for="preparationNotes">Preparation Notes</label>
+            <textarea id="preparationNotes" placeholder="Document any key points to address during the meeting..."></textarea>
+          </div>
+            
+          <div class="section-actions">
+            <button type="button" class="btn btn-secondary" onclick="confirmClose()">Cancel</button>
+            <button type="button" class="btn btn-primary" onclick="showTab('duringTab')">Next: During Meeting</button>
+          </div>
+        </div>
+      </div>
+        
+      <!-- During Meeting Tab -->
+      <div id="duringTab" class="tab-content" role="tabpanel" aria-labelledby="duringTabBtn">
+        <div class="card">
+          <h3 class="section-header"><i class="fas fa-comments"></i> During Meeting (30-Minute Precision Communication)</h3>
+            
+          <!-- Quick Status Sync (5 Minutes) -->
+          <h4 class="section-header">1. Quick Status Sync <span class="time-allocation">(5 Minutes)</span></h4>
+            
+          <div class="form-group required">
+            <label for="statusPriority">What's critical to discuss today?</label>
+            <textarea id="statusPriority" placeholder="Document the counselor's top priorities for this meeting..." required></textarea>
+            <div class="field-validation" id="statusValidation">Please enter the key topics to discuss</div>
+          </div>
+            
+          <div class="form-group">
+            <label>Current Workload Status</label>
+            <div class="rating-group">
+              <div class="rating-label">Workload Level:</div>
+              <div class="rating-options">
+                <label><input type="radio" name="workloadStatus" value="Underutilized"> Underutilized</label>
+                <label><input type="radio" name="workloadStatus" value="Balanced"> Balanced</label>
+                <label><input type="radio" name="workloadStatus" value="Heavy"> Heavy</label>
+                <label><input type="radio" name="workloadStatus" value="Overwhelming"> Overwhelming</label>
+              </div>
+            </div>
+          </div>
+            
+          <div class="form-group">
+            <label for="immediateBlockers">Immediate Blockers</label>
+            <textarea id="immediateBlockers" placeholder="Document any immediate obstacles preventing effective work..."></textarea>
+          </div>
+            
+          <div class="form-group">
+            <label>Energy/Motivation Level</label>
+            <div class="rating-group">
+              <div class="rating-label">Energy Level:</div>
+              <div class="rating-options">
+                <label><input type="radio" name="energyLevel" value="Low"> Low</label>
+                <label><input type="radio" name="energyLevel" value="Moderate"> Moderate</label>
+                <label><input type="radio" name="energyLevel" value="High"> High</label>
+                <label><input type="radio" name="energyLevel" value="Very High"> Very High</label>
+              </div>
+            </div>
+          </div>
+            
+          <!-- Performance Deep Dive (10 Minutes) -->
+          <h4 class="section-header">2. Performance Deep Dive <span class="time-allocation">(10 Minutes)</span></h4>
+            
+          <div class="form-group">
+            <label for="quantitativeMetrics">Quantitative Metrics Review</label>
+            <textarea id="quantitativeMetrics" placeholder="Document observations about call handling, complex case management, quality indicators, and comparative benchmarks..."></textarea>
+          </div>
+            
+          <div class="form-group">
+            <label for="qualitativeImpact">Qualitative Impact Assessment</label>
+            <textarea id="qualitativeImpact" placeholder="Document most meaningful interventions, skill demonstration highlights, areas of exceptional contribution, and growth opportunities..."></textarea>
+          </div>
+            
+          <div class="form-group">
+            <label for="strategicInsights">Strategic Insight Capture</label>
+            <textarea id="strategicInsights" placeholder="Document strengths to leverage, skill development pathways, and performance trend analysis..."></textarea>
+          </div>
+            
+          <!-- Strategic Development Planning (7 Minutes) -->
+          <h4 class="section-header">3. Strategic Development Planning <span class="time-allocation">(7 Minutes)</span></h4>
+            
+          <div class="form-group">
+            <label for="skillMastery">Skill Mastery Mapping</label>
+            <textarea id="skillMastery" placeholder="Document current competency levels, target skill acquisitions, and learning resource identification..."></textarea>
+          </div>
+            
+          <div class="form-group">
+            <label for="careerTrajectory">Career Trajectory Alignment</label>
+            <textarea id="careerTrajectory" placeholder="Document individual aspirations, organizational needs, and bridging development gaps..."></textarea>
+          </div>
+            
+          <div class="form-group">
+            <label for="developmentGoals">Action Development Tracker</label>
+            <textarea id="developmentGoals" placeholder="Identify 2-3 specific skill development goals matched with organizational requirements and preliminary learning pathway..."></textarea>
+          </div>
+            
+          <!-- Support and Resource Optimization (5 Minutes) -->
+          <h4 class="section-header">4. Support and Resource Optimization <span class="time-allocation">(5 Minutes)</span></h4>
+            
+          <div class="form-group">
+            <label for="obstacleIdentification">Obstacle Identification</label>
+            <textarea id="obstacleIdentification" placeholder="Document systemic challenges, resource constraints, and potential intervention points..."></textarea>
+          </div>
+            
+          <div class="form-group">
+            <label for="leadershipSupport">Leadership Support Calibration</label>
+            <textarea id="leadershipSupport" placeholder="Document immediate support needs, potential mentorship opportunities, and training/resource recommendations..."></textarea>
+          </div>
+            
+          <!-- Commitment and Momentum Generation (3 Minutes) -->
+          <h4 class="section-header">5. Commitment and Momentum Generation <span class="time-allocation">(3 Minutes)</span></h4>
+            
+          <div class="form-group">
+            <label for="commitmentSynthesis">Commitments Synthesis</label>
+            <textarea id="commitmentSynthesis" placeholder="Document clearly articulated action items, mutual accountability establishment, and next check-in preparation..."></textarea>
+          </div>
+            
+          <div class="form-group">
+            <label>Momentum Acceleration Checklist</label>
+            <div class="checkbox-container">
+              <input type="checkbox" id="momentumActionItems">
+              <label for="momentumActionItems">Confirmed 3 specific action items</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="momentumOwnership">
+              <label for="momentumOwnership">Established clear ownership</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="momentumFollowUp">
+              <label for="momentumFollowUp">Set precise follow-up expectations</label>
+            </div>
+          </div>
+            
+          <div class="section-actions">
+            <button type="button" class="btn btn-secondary" onclick="showTab('preTab')">Back: Pre-Meeting</button>
+            <button type="button" class="btn btn-primary" onclick="showTab('postTab')">Next: Post-Meeting</button>
+          </div>
+        </div>
+      </div>
+        
+      <!-- Post-Meeting Tab -->
+      <div id="postTab" class="tab-content" role="tabpanel" aria-labelledby="postTabBtn">
+        <div class="card">
+          <h3 class="section-header"><i class="fas fa-flag-checkered"></i> Post-Meeting Follow-Up Protocol</h3>
+            
+          <div class="form-group">
+            <label>Immediate Documentation</label>
+            <div class="checkbox-container">
+              <input type="checkbox" id="docFinalizeNotes">
+              <label for="docFinalizeNotes">Finalize meeting notes</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="docClarifyPoints">
+              <label for="docClarifyPoints">Clarify and expand on key discussion points</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="docActionItems">
+              <label for="docActionItems">Document action items with clear ownership</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="docFollowUpResources">
+              <label for="docFollowUpResources">Note any required follow-up resources</label>
+            </div>
+          </div>
+            
+          <div class="form-group">
+            <label for="actionItems">Action Item Tracking</label>
+            <div id="actionItemsContainer">
+              <!-- Action items will be generated here -->
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="addActionItem()">+ Add Action Item</button>
+          </div>
+            
+          <div class="form-group">
+            <label>Continued Support Mechanisms</label>
+            <div class="checkbox-container">
+              <input type="checkbox" id="supportFollowUp">
+              <label for="supportFollowUp">Schedule follow-up check-in points</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="supportMentorship">
+              <label for="supportMentorship">Identify potential mentorship or training opportunities</label>
+            </div>
+            <div class="checkbox-container">
+              <input type="checkbox" id="supportResources">
+              <label for="supportResources">Connect to additional resources if needed</label>
+            </div>
+          </div>
+            
+          <div class="form-group">
+            <label>Reflection and Improvement</label>
+            <div class="form-group">
+              <label for="reflectionSupport">What support did the counselor most need?</label>
+              <textarea id="reflectionSupport" placeholder="Document insights about counselor support needs..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="reflectionFacilitation">How can I better facilitate their growth?</label>
+              <textarea id="reflectionFacilitation" placeholder="Document ways to improve your coaching approach..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="reflectionMechanisms">Are there systemic support mechanisms we can improve?</label>
+              <textarea id="reflectionMechanisms" placeholder="Document potential improvements to systems and processes..."></textarea>
+            </div>
+          </div>
+            
+          <div class="form-group">
+            <label>Confidential Development Notes</label>
+            <div class="form-group">
+              <label for="devGrowthAreas">Discrete observations about potential growth areas</label>
+              <textarea id="devGrowthAreas" placeholder="Document private observations about growth areas..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="devStrengths">Strengths to further develop</label>
+              <textarea id="devStrengths" placeholder="Document strengths that can be further developed..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="devCareer">Long-term career development insights</label>
+              <textarea id="devCareer" placeholder="Document insights about long-term career development..."></textarea>
+            </div>
+          </div>
+            
+          <div class="form-group required">
+            <label for="meetingDate">Meeting Date</label>
+            <input type="date" id="meetingDate" required>
+            <div class="field-validation" id="meetingDateValidation">Please enter the meeting date</div>
+          </div>
+            
+          <div class="form-group">
+            <label for="nextCheckInDate">Next Check-In Date</label>
+            <input type="date" id="nextCheckInDate">
+          </div>
+            
+          <div class="section-actions">
+            <button type="button" class="btn btn-secondary" onclick="showTab('duringTab')">Back: During Meeting</button>
+            <button type="button" class="btn btn-primary" id="saveButton" onclick="validateAndSave()">Save Meeting Notes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <!-- Debug panel for troubleshooting -->
+  <div id="debugPanel" class="debug-panel">
+    <h4>Debug Information</h4>
+    <div id="debugContent"></div>
+    <button class="btn btn-sm btn-secondary" onclick="document.getElementById('debugPanel').classList.remove('show')">Close</button>
+  </div>
+</div>
+
+<script>
+  // Global variables
+  let unsavedChanges = false;
+  let currentUsername = "amourjanay";
+  
+  // Initialize form when the page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set default dates
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('meetingDate').value = today;
+    
+    // Set next check-in date (2 weeks from now)
+    const nextCheckIn = new Date();
+    nextCheckIn.setDate(nextCheckIn.getDate() + 14);
+    document.getElementById('nextCheckInDate').value = nextCheckIn.toISOString().split('T')[0];
+    
+    // Add initial action item
+    addActionItem();
+    
+    // Load current user
+    getCurrentUser();
+    
+    // Add change tracking to all form elements
+    addChangeTracking();
+    
+    // Set current date and time
+    setCurrentDateTime('2025-03-15 04:31:09');
+    
+    // Initialize counselor card preview
+    initCounselorCardPreview();
+    
+    // Add tooltips
+    initTooltips();
+    
+    // Add tab transitions
+    initTabTransitions();
+  });
+  
+  // Initialize interactive counselor card preview
+  function initCounselorCardPreview() {
+    const nameInput = document.getElementById('counselorName');
+    const emailInput = document.getElementById('counselorEmail');
+    const roleSelect = document.getElementById('counselorRole');
+    const statusSelect = document.getElementById('counselorStatus');
+    const teamSelect = document.getElementById('counselorTeam');
+    
+    // Create counselor card if it doesn't exist
+    if (!document.getElementById('counselorPreviewCard')) {
+      const cardContainer = document.createElement('div');
+      cardContainer.id = 'counselorPreviewContainer';
+      cardContainer.className = 'counselor-preview-container';
+      cardContainer.innerHTML = `
+        <div id="counselorPreviewCard" class="counselor-preview-card">
+          <div class="counselor-avatar" id="counselorAvatar">?</div>
+          <div class="counselor-preview-details">
+            <div class="counselor-preview-name" id="counselorPreviewName">Enter Name</div>
+            <div class="counselor-preview-role" id="counselorPreviewRole">Counselor</div>
+            <div class="counselor-preview-email" id="counselorPreviewEmail">Enter email address</div>
+            <span class="counselor-preview-status status-active" id="counselorPreviewStatus">Active</span>
+            <div class="counselor-preview-team" id="counselorPreviewTeam">Digital</div>
+          </div>
+        </div>
+      `;
+      
+      // Insert after the form row
+      const counselorInfoCard = document.querySelector('.counselor-info-card');
+      counselorInfoCard.appendChild(cardContainer);
+      
+      // Add animation
+      setTimeout(() => {
+        document.getElementById('counselorPreviewCard').classList.add('animate-in');
+      }, 100);
+    }
+    
+    // Update preview on input
+    nameInput.addEventListener('input', updateCounselorPreview);
+    emailInput.addEventListener('input', updateCounselorPreview);
+    roleSelect.addEventListener('change', updateCounselorPreview);
+    statusSelect.addEventListener('change', updateCounselorPreview);
+    teamSelect.addEventListener('change', updateCounselorPreview);
+    
+    // Initial update
+    updateCounselorPreview();
+  }
+  
+  // Update the counselor preview card
+  function updateCounselorPreview() {
+    const name = document.getElementById('counselorName').value.trim() || 'Enter Name';
+    const email = document.getElementById('counselorEmail').value.trim() || 'Enter email address';
+    const role = document.getElementById('counselorRole').value;
+    const status = document.getElementById('counselorStatus').value;
+    const team = document.getElementById('counselorTeam').value;
+    
+    // Update avatar
+    const avatar = document.getElementById('counselorAvatar');
+    if (name && name !== 'Enter Name') {
+      avatar.textContent = name.charAt(0).toUpperCase();
+      avatar.classList.add('has-initial');
+    } else {
+      avatar.textContent = '?';
+      avatar.classList.remove('has-initial');
+    }
+    
+    // Update details
+    document.getElementById('counselorPreviewName').textContent = name;
+    document.getElementById('counselorPreviewEmail').textContent = email;
+    document.getElementById('counselorPreviewRole').textContent = role;
+    document.getElementById('counselorPreviewTeam').textContent = team;
+    
+    // Update status with appropriate class
+    const statusElement = document.getElementById('counselorPreviewStatus');
+    statusElement.textContent = status;
+    statusElement.className = 'counselor-preview-status';
+    
+    // Add appropriate status class
+    const statusLower = status.toLowerCase();
+    if (statusLower === 'active') {
+      statusElement.classList.add('status-active');
+    } else if (statusLower.includes('train')) {
+      statusElement.classList.add('status-training');
+    } else if (statusLower === 'inactive') {
+      statusElement.classList.add('status-inactive');
+    } else if (statusLower.includes('pto') || statusLower.includes('leave') || statusLower.includes('loa')) {
+      statusElement.classList.add('status-leave');
+    } else {
+      statusElement.classList.add('status-active'); // default
+    }
+    
+    // Validate email format
+    if (email !== 'Enter email address') {
+      if (isValidEmail(email)) {
+        document.getElementById('counselorPreviewEmail').classList.remove('invalid-email');
+      } else {
+        document.getElementById('counselorPreviewEmail').classList.add('invalid-email');
+      }
+    }
+  }
+  
+  // Initialize tooltips for better user guidance
+  function initTooltips() {
+    const tooltips = [
+      { 
+        selector: '#counselorRole',
+        text: 'Select the counselor\'s current role in the organization.'
+      },
+      {
+        selector: '#counselorStatus', 
+        text: 'Current working status of the counselor.'
+      },
+      {
+        selector: '#statusPriority',
+        text: 'Focus on the most critical topics that need addressing today.'
+      },
+      {
+        selector: '#devGrowthAreas',
+        text: 'These notes are confidential and only visible to management.'
+      }
+    ];
+    
+    tooltips.forEach(tooltip => {
+      const element = document.querySelector(tooltip.selector);
+      if (element) {
+        // For radio button groups, add to parent element
+        const targetElement = element.type === 'radio' ? element.closest('.rating-options') : element;
+        
+        const tooltipEl = document.createElement('div');
+        tooltipEl.className = 'enhanced-tooltip';
+        tooltipEl.innerHTML = `
+          <div class="tooltip-icon" tabindex="0" role="button" aria-label="Help information">i</div>
+          <div class="tooltip-content">${tooltip.text}</div>
+        `;
+        
+        // Insert tooltip after the label for most elements
+        if (targetElement.previousElementSibling && targetElement.previousElementSibling.tagName === 'LABEL') {
+          targetElement.previousElementSibling.appendChild(tooltipEl);
+        } else {
+          targetElement.parentNode.insertBefore(tooltipEl, targetElement);
+        }
+      }
+    });
+  }
+  
+  // Initialize smooth tab transitions
+  function initTabTransitions() {
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Add animation class to tabs
+        document.querySelectorAll('.tab').forEach(t => {
+          t.classList.add('tab-transition');
+        });
+        
+        // Add animation class to content
+        document.querySelectorAll('.tab-content').forEach(content => {
+          content.classList.add('content-transition');
+        });
+      });
+    });
+  }
+  
+  // Get current user from the active session
+  function getCurrentUser() {
+    // Set the value from the variable
+    const username = currentUsername || 'amourjanay';
+    document.getElementById('currentUser').textContent = 'User: ' + username;
+    
+    // Add animation to user metadata
+    document.querySelector('.user-metadata').classList.add('fade-in');
+  }
+  
+  // Set current date and time with animation
+  function setCurrentDateTime(dateTime) {
+    const element = document.getElementById('currentDateTime');
+    element.textContent = 'Date: ' + dateTime + ' UTC';
+    element.classList.add('highlight-animation');
+    
+    // Remove animation class after it completes
+    setTimeout(() => {
+      element.classList.remove('highlight-animation');
+    }, 1500);
+  }
+  
+  // Enhanced action item management
+  function addActionItem(item = null) {
+    const container = document.getElementById('actionItemsContainer');
+    const index = container.children.length + 1;
+    
+    const actionItem = document.createElement('div');
+    actionItem.className = 'action-item';
+    actionItem.id = `actionItem-${index}`;
+    
+    // Build the action item with enhanced interactive elements
+    actionItem.innerHTML = `
+      <div class="action-item-header">
+        <div class="action-item-title">Action Item ${index}</div>
+        ${index > 1 ? '<button type="button" class="action-item-remove" aria-label="Remove action item">&times;</button>' : ''}
+      </div>
+      
+      <div class="action-item-content">
+        <div class="form-group">
+          <label for="actionItem${index}">Description</label>
+          <input type="text" id="actionItem${index}" placeholder="Description of action" 
+            value="${item ? escapeHtml(item.description || '') : ''}">
+          <div class="action-completion-indicator">
+            <span class="status-dot"></span>
+            <span class="status-text">Not started</span>
+          </div>
+        </div>
+        
+        <div class="action-item-details">
+          <div class="form-group">
+            <label for="actionOwner${index}">Owner</label>
+            <select id="actionOwner${index}">
+              <option value="Counselor" ${item && item.owner === 'Counselor' ? 'selected' : ''}>Counselor</option>
+              <option value="Team Lead" ${item && item.owner === 'Team Lead' ? 'selected' : ''}>Team Lead</option>
+              <option value="Both" ${item && item.owner === 'Both' ? 'selected' : ''}>Both</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="actionDate${index}">Target Completion</label>
+            <input type="date" id="actionDate${index}" value="${item && item.date ? formatDate(item.date) : ''}">
+          </div>
+          
+          <div class="form-group action-status">
+            <label for="actionStatus${index}">Status</label>
+            <select id="actionStatus${index}" onchange="updateActionStatus(${index})">
+              <option value="Not Started" ${item && item.status === 'Not Started' ? 'selected' : ''}>Not Started</option>
+              <option value="In Progress" ${item && item.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+              <option value="Completed" ${item && item.status === 'Completed' ? 'selected' : ''}>Completed</option>
+              <option value="Blocked" ${item && item.status === 'Blocked' ? 'selected' : ''}>Blocked</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    container.appendChild(actionItem);
+    
+    // Add animation to new action item
+    setTimeout(() => {
+      actionItem.classList.add('action-item-appear');
+    }, 10);
+    
+    // Add event listeners
+    if (index > 1) {
+      const removeButton = actionItem.querySelector('.action-item-remove');
+      removeButton.addEventListener('click', function() {
+        removeActionItem(actionItem);
+      });
+    }
+    
+    // Initialize status indicator
+    updateActionStatus(index);
+    
+    // Add change tracking
+    actionItem.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('change', markUnsavedChanges);
+      
+      if (element.type === 'text') {
+        element.addEventListener('input', markUnsavedChanges);
+      }
+    });
+    
+    // Mark form as having unsaved changes
+    markUnsavedChanges();
+    
+    return actionItem;
+  }
+  
+  // Update action item status indicator
+  function updateActionStatus(index) {
+    const status = document.getElementById(`actionStatus${index}`).value;
+    const indicator = document.querySelector(`#actionItem-${index} .action-completion-indicator`);
+    
+    if (indicator) {
+      const statusDot = indicator.querySelector('.status-dot');
+      const statusText = indicator.querySelector('.status-text');
+      
+      statusDot.className = 'status-dot';
+      statusText.textContent = status;
+      
+      switch (status) {
+        case 'Not Started':
+          statusDot.classList.add('status-not-started');
+          break;
+        case 'In Progress':
+          statusDot.classList.add('status-in-progress');
+          break;
+        case 'Completed':
+          statusDot.classList.add('status-completed');
+          break;
+        case 'Blocked':
+          statusDot.classList.add('status-blocked');
+          break;
+      }
+    }
+  }
+  
+  // Enhanced remove action item with animation
+  function removeActionItem(actionItem) {
+    // Add removal animation
+    actionItem.classList.add('action-item-remove-anim');
+    
+    // Wait for animation to complete
+    setTimeout(() => {
+      const container = document.getElementById('actionItemsContainer');
+      container.removeChild(actionItem);
+      
+      // Renumber remaining action items
+      const items = container.getElementsByClassName('action-item');
+      
+      for (let i = 0; i < items.length; i++) {
+        const index = i + 1;
+        const item = items[i];
+        
+        // Update ID
+        item.id = `actionItem-${index}`;
+        
+        // Update title
+        const title = item.querySelector('.action-item-title');
+        title.textContent = `Action Item ${index}`;
+        
+        // Update input IDs and labels
+        const inputs = item.querySelectorAll('input');
+        const selects = item.querySelectorAll('select');
+        const labels = item.querySelectorAll('label');
+        
+        if (inputs[0]) {
+          inputs[0].id = `actionItem${index}`;
+          labels[0].htmlFor = `actionItem${index}`;
+        }
+        
+        if (inputs[1]) {
+          inputs[1].id = `actionDate${index}`;
+          labels[2].htmlFor = `actionDate${index}`;
+        }
+        
+        if (selects[0]) {
+          selects[0].id = `actionOwner${index}`;
+          labels[1].htmlFor = `actionOwner${index}`;
+        }
+        
+        if (selects[1]) {
+          selects[1].id = `actionStatus${index}`;
+          selects[1].setAttribute('onchange', `updateActionStatus(${index})`);
+          labels[3].htmlFor = `actionStatus${index}`;
+        }
+        
+        // Show/hide remove button based on position
+        const removeBtn = item.querySelector('.action-item-remove');
+        if (i === 0 && removeBtn) {
+          removeBtn.remove();
+        }
+      }
+      
+      // Mark as modified
+      markUnsavedChanges();
+    }, 300);
+  }
+  
+  // Add change tracking to form elements
+  function addChangeTracking() {
+    const formElements = document.querySelectorAll('input, textarea, select');
+    formElements.forEach(element => {
+      element.addEventListener('change', function() {
+        markUnsavedChanges();
+      });
+      
+      if (element.tagName === 'TEXTAREA' || element.tagName === 'INPUT' && element.type === 'text') {
+        element.addEventListener('input', function() {
+          markUnsavedChanges();
+        });
+      }
+    });
+  }
+  
+  // Mark unsaved changes
+  function markUnsavedChanges() {
+    unsavedChanges = true;
+    
+    // Show unsaved changes indicator
+    showUnsavedChangesIndicator();
+  }
+  
+  // Show unsaved changes indicator
+  function showUnsavedChangesIndicator() {
+    // Create indicator if it doesn't exist
+    if (!document.getElementById('unsavedChangesIndicator')) {
+      const indicator = document.createElement('div');
+      indicator.id = 'unsavedChangesIndicator';
+      indicator.className = 'unsaved-changes-indicator';
+      indicator.innerHTML = `
+        <div class="unsaved-message">
+          <span class="pulse-dot"></span>
+          You have unsaved changes
+        </div>
+        <button class="save-now-btn" onclick="validateAndSave()">Save Now</button>
+      `;
+      document.body.appendChild(indicator);
+      
+      // Animate in
+      setTimeout(() => {
+        indicator.classList.add('show');
+      }, 10);
+    }
+  }
+  
+  // Hide unsaved changes indicator
+  function hideUnsavedChangesIndicator() {
+    const indicator = document.getElementById('unsavedChangesIndicator');
+    if (indicator) {
+      indicator.classList.remove('show');
+      setTimeout(() => {
+        if (indicator.parentNode) {
+          indicator.parentNode.removeChild(indicator);
+        }
+      }, 300);
+    }
+  }
+  
+  // Show tab content with enhanced animation
+  function showTab(tabId) {
+    // Hide all tabs with animation
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      if (tab.classList.contains('active')) {
+        tab.classList.add('tab-fade-out');
+        setTimeout(() => {
+          tab.classList.remove('active', 'tab-fade-out');
+          tab.setAttribute('aria-hidden', 'true');
+        }, 150);
+      } else {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-hidden', 'true');
+      }
+    });
+    
+    // Show selected tab with animation
+    setTimeout(() => {
+      const selectedTab = document.getElementById(tabId);
+      selectedTab.classList.add('active', 'tab-fade-in');
+      selectedTab.setAttribute('aria-hidden', 'false');
+      
+      setTimeout(() => {
+        selectedTab.classList.remove('tab-fade-in');
+      }, 300);
+    }, 160);
+    
+    // Update tab buttons
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.classList.remove('active');
+      tab.setAttribute('aria-selected', 'false');
+    });
+    
+    const tabMap = {
+      'preTab': 'preTabBtn',
+      'duringTab': 'duringTabBtn',
+      'postTab': 'postTabBtn'
+    };
+    
+    document.getElementById(tabMap[tabId]).classList.add('active');
+    document.getElementById(tabMap[tabId]).setAttribute('aria-selected', 'true');
+    
+    // Scroll to top of tab content
+    document.getElementById(tabId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  
+  // Format date for input fields
+  function formatDate(dateString) {
+    if (!dateString) return '';
+    
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return '';
+      
+      return date.toISOString().split('T')[0];
+    } catch (e) {
+      return '';
+    }
+  }
+  
+  // Helper function to get radio button value
+  function getRadioValue(name) {
+    const radios = document.getElementsByName(name);
+    for (let i = 0; i < radios.length; i++) {
+      if (radios[i].checked) {
+        return radios[i].value;
+      }
+    }
+    return null;
+  }
+  
+  // Real-time form validation
+  function validateField(field, validationElement, validationFunction) {
+    const value = field.value.trim();
+    const isValid = validationFunction(value);
+    
+    if (!isValid) {
+      field.classList.add('error-field');
+      document.getElementById(validationElement).style.display = 'block';
+    } else {
+      field.classList.remove('error-field');
+      document.getElementById(validationElement).style.display = 'none';
+    }
+    
+    return isValid;
+  }
+  
+  // Validate and save form with enhanced feedback
+  function validateAndSave() {
+    // Clear previous validation messages
+    document.querySelectorAll('.field-validation').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.error-field').forEach(el => el.classList.remove('error-field'));
+    
+    let isValid = true;
+    
+    // Check counselor name
+    isValid = validateField(
+      document.getElementById('counselorName'),
+      'nameValidation',
+      value => value.length > 0
+    ) && isValid;
+    
+    // Check counselor email
+    isValid = validateField(
+      document.getElementById('counselorEmail'),
+      'emailValidation',
+      value => value.length > 0 && isValidEmail(value)
+    ) && isValid;
+    
+    // Check status priority
+    isValid = validateField(
+      document.getElementById('statusPriority'),
+      'statusValidation',
+      value => value.length > 0
+    ) && isValid;
+    
+    // Check meeting date
+    isValid = validateField(
+      document.getElementById('meetingDate'),
+      'meetingDateValidation',
+      value => value.length > 0
+    ) && isValid;
+    
+    if (!isValid) {
+      // Show error message with shake animation
+      const errorMsg = document.getElementById('errorMessage');
+      errorMsg.innerHTML = 'Please complete all required fields before saving. <button class="close-message" onclick="hideMessage(\'errorMessage\')" aria-label="Close message">&times;</button>';
+      errorMsg.style.display = 'block';
+      errorMsg.classList.add('shake-animation');
+      
+      setTimeout(() => {
+        errorMsg.classList.remove('shake-animation');
+      }, 500);
+      
+      // Switch to the appropriate tab if needed
+      if (document.getElementById('counselorName').classList.contains('error-field') || 
+          document.getElementById('counselorEmail').classList.contains('error-field')) {
+        // No need to switch tabs since these are on all tabs
+      } else if (document.getElementById('statusPriority').classList.contains('error-field')) {
+        showTab('duringTab');
+      } else if (document.getElementById('meetingDate').classList.contains('error-field')) {
+        showTab('postTab');
+      }
+      
+      return;
+    }
+    
+    // If validation passed, save the meeting notes
+    saveOneOnOneNotes();
+  }
+  
+  // Save one-on-one meeting notes with enhanced error handling
+  function saveOneOnOneNotes() {
+    // Show saving indicator
+    const saveButton = document.getElementById('saveButton');
+    const originalText = saveButton.textContent;
+    saveButton.innerHTML = '<div class="loading-spinner"></div> Saving...';
+    saveButton.disabled = true;
+    saveButton.classList.add('saving');
+    
+    // Hide unsaved changes indicator
+    hideUnsavedChangesIndicator();
+    
+    // Clear any previous messages
+    hideMessage('errorMessage');
+    hideMessage('successMessage');
+    
+    // Gather action items
+    const actionItems = [];
+    const actionItemsContainer = document.getElementById('actionItemsContainer');
+    const actionElements = actionItemsContainer.getElementsByClassName('action-item');
+    
+    for (let i = 0; i < actionElements.length; i++) {
+      const index = i + 1;
+      const description = document.getElementById(`actionItem${index}`).value;
+      
+      if (description) {
+        actionItems.push({
+          description: description,
+          owner: document.getElementById(`actionOwner${index}`).value,
+          date: document.getElementById(`actionDate${index}`).value,
+          status: document.getElementById(`actionStatus${index}`).value
+        });
+      }
+    }
+    
+    // Generate summary from status priority
+    let summary = document.getElementById('statusPriority').value.trim();
+    if (summary.length > 100) {
+      summary = summary.substring(0, 97) + '...';
+    } else if (!summary) {
+      summary = 'Regular 1:1 check-in';
+    }
+    
+    // Gather counselor information
+    const counselorInfo = {
+      name: document.getElementById('counselorName').value,
+      email: document.getElementById('counselorEmail').value,
+      role: document.getElementById('counselorRole').value,
+      status: document.getElementById('counselorStatus').value,
+      team: document.getElementById('counselorTeam').value,
+      startDate: document.getElementById('counselorStartDate').value || new Date().toISOString().split('T')[0]
+    };
+    
+    // Prepare meeting data
+    const meetingData = {
+      // Counselor information
+      counselorName: counselorInfo.name,
+      counselorEmail: counselorInfo.email,
+      counselorRole: counselorInfo.role,
+      counselorStatus: counselorInfo.status,
+      counselorTeam: counselorInfo.team,
+      counselorStartDate: counselorInfo.startDate,
+      
+      // Meeting metadata
+      meetingDate: document.getElementById('meetingDate').value,
+      nextCheckInDate: document.getElementById('nextCheckInDate').value,
+      summary: summary,
+      
+      // Pre-meeting data
+      prepReviewPrevious: document.getElementById('prepReviewPrevious').checked,
+      prepCheckMetrics: document.getElementById('prepCheckMetrics').checked,
+      prepGatherUpdates: document.getElementById('prepGatherUpdates').checked,
+      prepDiscussionPoints: document.getElementById('prepDiscussionPoints').checked,
+      dataReviewCalls: document.getElementById('dataReviewCalls').checked,
+      dataCheckIndicators: document.getElementById('dataCheckIndicators').checked,
+      dataNoteIssues: document.getElementById('dataNoteIssues').checked,
+      dataIdentifyResources: document.getElementById('dataIdentifyResources').checked,
+      preparationNotes: document.getElementById('preparationNotes').value,
+      
+      // During-meeting data
+      statusPriority: document.getElementById('statusPriority').value,
+      workloadStatus: getRadioValue('workloadStatus'),
+      immediateBlockers: document.getElementById('immediateBlockers').value,
+      energyLevel: getRadioValue('energyLevel'),
+      quantitativeMetrics: document.getElementById('quantitativeMetrics').value,
+      qualitativeImpact: document.getElementById('qualitativeImpact').value,
+      strategicInsights: document.getElementById('strategicInsights').value,
+      skillMastery: document.getElementById('skillMastery').value,
+      careerTrajectory: document.getElementById('careerTrajectory').value,
+      developmentGoals: document.getElementById('developmentGoals').value,
+      obstacleIdentification: document.getElementById('obstacleIdentification').value,
+      leadershipSupport: document.getElementById('leadershipSupport').value,
+      commitmentSynthesis: document.getElementById('commitmentSynthesis').value,
+      momentumActionItems: document.getElementById('momentumActionItems').checked,
+      momentumOwnership: document.getElementById('momentumOwnership').checked,
+      momentumFollowUp: document.getElementById('momentumFollowUp').checked,
+      
+      // Post-meeting data
+      docFinalizeNotes: document.getElementById('docFinalizeNotes').checked,
+      docClarifyPoints: document.getElementById('docClarifyPoints').checked,
+      docActionItems: document.getElementById('docActionItems').checked,
+      docFollowUpResources: document.getElementById('docFollowUpResources').checked,
+      actionItems: actionItems,
+      supportFollowUp: document.getElementById('supportFollowUp').checked,
+      supportMentorship: document.getElementById('supportMentorship').checked,
+      supportResources: document.getElementById('supportResources').checked,
+      reflectionSupport: document.getElementById('reflectionSupport').value,
+      reflectionFacilitation: document.getElementById('reflectionFacilitation').value,
+      reflectionMechanisms: document.getElementById('reflectionMechanisms').value,
+      devGrowthAreas: document.getElementById('devGrowthAreas').value,
+      devStrengths: document.getElementById('devStrengths').value,
+      devCareer: document.getElementById('devCareer').value,
+      
+      // Meta information
+      createdBy: currentUsername,
+      createdAt: document.getElementById('currentDateTime').textContent.replace('Date: ', ''),
+      lastModifiedBy: currentUsername,
+      lastModifiedAt: document.getElementById('currentDateTime').textContent.replace('Date: ', '')
+    };
+    
+    // Debug message to help diagnose issues - will display in browser console
+    console.log('Saving meeting data:', meetingData);
+    
+    // Show processing message
+    showMessage('successMessage', 'Processing your meeting notes... Please wait.');
+    
+    // Submit to the server with better error handling
+    google.script.run
+      .withSuccessHandler(function(result) {
+        console.log('Server response:', result);
+        
+        // Reset button state
+        saveButton.innerHTML = originalText;
+        saveButton.disabled = false;
+        saveButton.classList.remove('saving');
+        
+        if (result && result.success) {
+          // Show success message with confetti animation
+          showSuccessMessage('Meeting notes saved successfully to your one-on-one sheet!');
+          
+          // Play confetti animation
+          playConfettiAnimation();
+          
+          // Store saved data in session storage in case we need to reference it
+          try {
+            sessionStorage.setItem('lastSavedMeetingData', JSON.stringify(meetingData));
+          } catch (e) {
+            console.warn('Could not store meeting data in session storage', e);
+          }
+          
+          // Mark as saved
+          unsavedChanges = false;
+          
+          // Ask user if they want to send a follow-up email (with a delay to ensure they see the save confirmation)
+          setTimeout(function() {
+            showFollowUpPrompt(meetingData);
+          }, 2000);
+        } else {
+          // Show detailed error message
+          let errorMsg = 'Failed to save meeting notes to your one-on-one sheet.';
+          
+          if (result && result.message) {
+            errorMsg += ' Error: ' + result.message;
+          }
+          
+          if (result && result.details) {
+            errorMsg += ' Details: ' + result.details;
+            console.error('Save error details:', result.details);
+          }
+          
+          showErrorMessage(errorMsg);
+          
+          // Show troubleshooting dialog
+          showTroubleshootingDialog();
+        }
+      })
+      .withFailureHandler(function(error) {
+        console.error('Server error:', error);
+        
+        // Reset button state
+        saveButton.innerHTML = originalText;
+        saveButton.disabled = false;
+        saveButton.classList.remove('saving');
+        
+        // Show error message with details
+        showErrorMessage('An error occurred while saving to your one-on-one sheet: ' + (error || 'Unknown error'));
+        
+        // Show troubleshooting dialog
+        showTroubleshootingDialog();
+      })
+      .saveOneOnOneNotes(meetingData);
+  }
+  
+  // Add a new troubleshooting dialog to help users fix save issues
+  function showTroubleshootingDialog() {
+    const dialog = document.createElement('div');
+    dialog.className = 'modern-dialog';
+    dialog.innerHTML = `
+      <div class="modern-dialog-content">
+        <h3>Troubleshooting Save Issues</h3>
+        <p>Your meeting notes could not be saved to the one-on-one sheet. This might be due to:</p>
+        <ol>
+          <li>Permission issues with the spreadsheet</li>
+          <li>Network connectivity problems</li>
+          <li>The spreadsheet may have been moved or renamed</li>
+        </ol>
+        <p>Try these solutions:</p>
+        <ul>
+          <li>Check that you have edit access to the one-on-one spreadsheet</li>
+          <li>Refresh the page and try again</li>
+          <li>Contact your administrator to verify the spreadsheet configuration</li>
+        </ul>
+        <div class="modern-dialog-buttons">
+          <button class="btn btn-secondary" onclick="hideModernDialog()">Close</button>
+          <button class="btn btn-primary" onclick="retryLastSave()">Try Again</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(dialog);
+    
+    // Show with animation
+    setTimeout(() => {
+      dialog.classList.add('show');
+    }, 10);
+  }
+  
+  // Function to retry the last save attempt
+  function retryLastSave() {
+    hideModernDialog();
+    validateAndSave();
+  }
+  
+  // Show follow-up email prompt with animation
+  function showFollowUpPrompt(meetingData) {
+    // Create modal dialog
+    const modal = document.createElement('div');
+    modal.className = 'follow-up-modal';
+    modal.innerHTML = `
+      <div class="follow-up-content">
+        <h3>Meeting Notes Saved!</h3>
+        <p>Would you like to send a follow-up email to ${meetingData.counselorName}?</p>
+        <div class="follow-up-actions">
+          <button class="btn btn-secondary" onclick="closeFollowUpPrompt(false)">No, Close Form</button>
+          <button class="btn btn-primary" onclick="sendFollowUpEmail(${JSON.stringify(meetingData).replace(/"/g, '&quot;')})">
+            Yes, Send Email
+          </button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    
+    // Animate the modal in
+    setTimeout(() => {
+      modal.classList.add('show');
+    }, 10);
+  }
+  
+  // Close follow-up prompt
+  function closeFollowUpPrompt(emailSent = false) {
+    const modal = document.querySelector('.follow-up-modal');
+    if (modal) {
+      modal.classList.remove('show');
+      setTimeout(() => {
+        if (modal.parentNode) {
+          modal.parentNode.removeChild(modal);
+          
+          // Close the form if we're done
+          if (!emailSent) {
+            confirmClose(true);
+          }
+        }
+      }, 300);
+    }
+  }
+  
+  // Send follow-up email to counselor
+  function sendFollowUpEmail(meetingData) {
+    // Close prompt and show sending message
+    closeFollowUpPrompt(true);
+    showMessage('successMessage', 'Sending follow-up email...');
+    
+    // Add email sending animation
+    const emailIcon = document.createElement('div');
+    emailIcon.className = 'email-sending-animation';
+    emailIcon.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+        <path fill="none" d="M0 0h24v24H0z"/>
+        <path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238 4.353 7.762l7.72 6.555 7.581-6.56-1.308-1.513-6.285 5.439z"/>
+      </svg>
+      <div class="sending-text">Sending email...</div>
+    `;
+    document.body.appendChild(emailIcon);
+    
+    // Animate email icon
+    setTimeout(() => {
+      emailIcon.classList.add('animate');
+    }, 10);
+    
+    google.script.run
+      .withSuccessHandler(function(result) {
+        if (result && result.success) {
+          // Update animation to show success
+          emailIcon.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+              <path fill="none" d="M0 0h24v24H0z"/>
+              <path fill="#4CAF50" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <div class="sending-text success">Email sent successfully!</div>
+          `;
+          
+          // Remove animation after delay
+          setTimeout(() => {
+            if (emailIcon.parentNode) {
+              emailIcon.classList.remove('animate');
+              setTimeout(() => {
+                if (emailIcon.parentNode) {
+                  emailIcon.parentNode.removeChild(emailIcon);
+                }
+              }, 300);
+            }
+            
+            // Show success message and close form
+            showMessage('successMessage', 'Follow-up email sent successfully!');
+            setTimeout(() => {
+              confirmClose(true);
+            }, 1500);
+          }, 1500);
+        } else {
+          // Update animation to show error
+          emailIcon.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+              <path fill="none" d="M0 0h24v24H0z"/>
+              <path fill="#F44336" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+            <div class="sending-text error">Failed to send email</div>
+          `;
+          
+          // Remove animation after delay
+          setTimeout(() => {
+            if (emailIcon.parentNode) {
+              emailIcon.classList.remove('animate');
+              setTimeout(() => {
+                if (emailIcon.parentNode) {
+                  emailIcon.parentNode.removeChild(emailIcon);
+                }
+              }, 300);
+            }
+            
+            // Show error message
+            showErrorMessage('Error sending follow-up email: ' + (result && result.message || 'Unknown error'));
+          }, 1500);
+        }
+      })
+      .withFailureHandler(function(error) {
+        // Update animation to show error
+        emailIcon.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+            <path fill="none" d="M0 0h24v24H0z"/>
+            <path fill="#F44336" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+          <div class="sending-text error">Failed to send email</div>
+        `;
+        
+        // Remove animation after delay
+        setTimeout(() => {
+          if (emailIcon.parentNode) {
+            emailIcon.classList.remove('animate');
+            setTimeout(() => {
+              if (emailIcon.parentNode) {
+                emailIcon.parentNode.removeChild(emailIcon);
+              }
+            }, 300);
+          }
+          
+          // Show error message
+          showErrorMessage('Error sending follow-up email: ' + (error || 'Unknown error'));
+        }, 1500);
+      })
+      .sendOneOnOneFollowUpEmail(meetingData);
+  }
+  
+  // Play confetti animation
+  function playConfettiAnimation() {
+    // Create confetti container
+    const confettiContainer = document.createElement('div');
+    confettiContainer.className = 'confetti-container';
+    document.body.appendChild(confettiContainer);
+    
+    // Create confetti pieces
+    const colors = ['#FF786E', '#4F52DE', '#9A3499', '#137F6A', '#FFAD8D', '#BAE2CE'];
+    
+    for (let i = 0; i < 100; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + '%';
+      confetti.style.animationDelay = Math.random() * 3 + 's';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confettiContainer.appendChild(confetti);
+    }
+    
+    // Remove confetti after animation
+    setTimeout(() => {
+      if (confettiContainer.parentNode) {
+        confettiContainer.parentNode.removeChild(confettiContainer);
+      }
+    }, 5000);
+  }
+  
+  // Show success message
+  function showSuccessMessage(message) {
+    showMessage('successMessage', message);
+  }
+  
+  // Show error message
+  function showErrorMessage(message) {
+    showMessage('errorMessage', message);
+  }
+  
+  // Show message
+  function showMessage(elementId, message) {
+    const element = document.getElementById(elementId);
+    element.innerHTML = `${message}<button class="close-message" onclick="hideMessage('${elementId}')" aria-label="Close message">&times;</button>`;
+    element.style.display = 'block';
+    
+    // Add animation
+    element.classList.add('message-animation');
+    setTimeout(() => {
+      element.classList.remove('message-animation');
+    }, 500);
+    
+    // Scroll to top to ensure message is visible
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Set focus to the message for screen readers
+    element.setAttribute('tabindex', '-1');
+    element.focus();
+    
+    // Auto-hide success messages after 8 seconds
+    if (elementId === 'successMessage') {
+      setTimeout(() => {
+        hideMessage(elementId);
+      }, 8000);
+    }
+  }
+  
+  // Hide message
+  function hideMessage(elementId) {
+    const element = document.getElementById(elementId);
+    if (element && element.style.display !== 'none') {
+      element.classList.add('message-hide-animation');
+      
+      setTimeout(() => {
+        element.style.display = 'none';
+        element.classList.remove('message-hide-animation');
+      }, 300);
+    }
+  }
+  
+  // Email validation helper
+  function isValidEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+  
+  // HTML escape helper
+  function escapeHtml(text) {
+    if (!text) return '';
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+  
+  // Confirm before closing if there are unsaved changes
+  function confirmClose(forceClose = false) {
+    if (unsavedChanges && !forceClose) {
+      // Create a modern dialog
+      const dialog = document.createElement('div');
+      dialog.className = 'modern-dialog';
+      dialog.innerHTML = `
+               <div class="modern-dialog-content">
+          <h3>Unsaved Changes</h3>
+          <p>You have unsaved changes. Are you sure you want to exit?</p>
+          <div class="modern-dialog-buttons">
+            <button class="btn btn-secondary" onclick="hideModernDialog()">Cancel</button>
+            <button class="btn btn-primary" onclick="closeForm()">Exit Anyway</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(dialog);
+      
+      // Show with animation
+      setTimeout(() => {
+        dialog.classList.add('show');
+      }, 10);
+    } else {
+      closeForm();
+    }
+  }
+  
+  // Hide modern dialog
+  function hideModernDialog() {
+    const dialog = document.querySelector('.modern-dialog');
+    if (dialog) {
+      dialog.classList.remove('show');
+      setTimeout(() => {
+        if (dialog.parentNode) {
+          dialog.parentNode.removeChild(dialog);
+        }
+      }, 300);
+    }
+  }
+  
+  // Close the form
+  function closeForm() {
+    google.script.run.showOneOnOneDashboard();
+  }
+  
+  // Show debug information panel
+  function showDebugInfo(info) {
+    const debugPanel = document.getElementById('debugPanel');
+    const debugContent = document.getElementById('debugContent');
+    
+    // Format the debug info
+    let formattedInfo = '';
+    if (typeof info === 'object') {
+      try {
+        formattedInfo = '<pre>' + JSON.stringify(info, null, 2) + '</pre>';
+      } catch (e) {
+        formattedInfo = '<p>Error formatting debug info: ' + e.message + '</p>';
+      }
+    } else {
+      formattedInfo = '<p>' + info + '</p>';
+    }
+    
+    // Update and show the panel
+    debugContent.innerHTML = formattedInfo;
+    debugPanel.classList.add('show');
+  }
+  
+  // Add beforeunload event handler for browser navigation
+  window.addEventListener('beforeunload', function(e) {
+    if (unsavedChanges) {
+      // Standard message (most browsers will show their own generic message)
+      const confirmationMessage = 'You have unsaved changes that will be lost if you leave.';
+      e.returnValue = confirmationMessage;
+      return confirmationMessage;
+    }
+  });
+  
+  // Update the current date and time once per minute
+  setInterval(() => {
+    // Get the current UTC time
+    const now = new Date();
+    const year = now.getUTCFullYear();
+    const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(now.getUTCDate()).padStart(2, '0');
+    const hours = String(now.getUTCHours()).padStart(2, '0');
+    const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+    
+    const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    setCurrentDateTime(formattedTime);
+  }, 60000); // Update every minute
+  
+  // Initialize the current time on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    // Use the provided date and time
+    setCurrentDateTime('2025-03-15 04:36:32');
+    
+    // Set the current user
+    currentUsername = 'amourjanay';
+    document.getElementById('currentUser').textContent = 'User: ' + currentUsername;
+  });
+</script>
+</body>
+</html>
+
